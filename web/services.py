@@ -160,3 +160,64 @@ def actualizar_direccion(id, calle, numero, comuna, punto_referencia=None):
 def eliminar_direccion(id):
     direccion = Direccion.objects.get(pk=id)
     direccion.delete()
+
+# Nuevas funciones para listar
+
+# Función para listar todos los usuarios
+def listar_usuarios():
+    usuarios = Usuario.objects.all()
+    resultado = "Usuarios:\n"
+    for usuario in usuarios:
+        resultado += f"{usuario.id} - {usuario.username} {usuario.last_name}\n"
+    return resultado
+
+# Función para listar todas las propiedades
+def listar_propiedades():
+    propiedades = Propiedad.objects.all()
+    resultado = "Propiedades:\n"
+    for propiedad in propiedades:
+        resultado += f"{propiedad.id} - {propiedad.nombre} de tipo {propiedad.tipo_inmueble}\n"
+    return resultado
+
+# Función para listar todas las imágenes de propiedades
+def listar_imagenes_propiedades():
+    imagenes = ImagenPropiedad.objects.all()
+    resultado = "Imágenes de Propiedades:\n"
+    for imagen in imagenes:
+        resultado += f"{imagen.id} - Imagen de '{imagen.propiedad.nombre}'\n"
+    return resultado
+
+# Función para listar todas las solicitudes de arriendo
+def listar_solicitudes_arriendo():
+    solicitudes = SolicitudArriendo.objects.all()
+    resultado = "Solicitudes de Arriendo:\n"
+    for solicitud in solicitudes:
+        resultado += f"{solicitud.id} - Solicitud de {solicitud.usuario.username} para {solicitud.propiedad.nombre}, estado: {solicitud.estado}\n"
+    return resultado
+
+# Función para listar todas las regiones
+def listar_regiones():
+    regiones = Region.objects.all()
+    resultado = "Regiones:\n"
+    for region in regiones:
+        resultado += f"{region.id} - {region.nombre}\n"
+    return resultado
+
+# Función para listar todas las comunas
+def listar_comunas():
+    comunas = Comuna.objects.all()
+    resultado = "Comunas:\n"
+    for comuna in comunas:
+        resultado += f"{comuna.id} - {comuna.nombre}, {comuna.region.nombre}\n"
+    return resultado
+
+# Función para listar todas las direcciones
+def listar_direcciones():
+    direcciones = Direccion.objects.all()
+    resultado = "Direcciones:\n"
+    for direccion in direcciones:
+        if direccion.punto_referencia:
+            resultado += f"{direccion.id} - {direccion.calle} {direccion.numero}, {direccion.punto_referencia}, {direccion.comuna.nombre}\n"
+        else:
+            resultado += f"{direccion.id} - {direccion.calle} {direccion.numero}, {direccion.comuna.nombre}\n"
+    return resultado
