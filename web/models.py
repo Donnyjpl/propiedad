@@ -29,7 +29,7 @@ class Usuario(AbstractUser):
     )
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.username} {self.last_name}"
 class Propiedad(models.Model):
     TIPO_INMUEBLE_CHOICES = [
         ('casa', 'Casa'),
@@ -51,7 +51,7 @@ class Propiedad(models.Model):
     arrendatario = models.ForeignKey(Usuario, related_name='propiedades_arrendadas_a_mi', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre}y el tipo {self.tipo_inmueble}"
     
     
 class ImagenPropiedad(models.Model):
@@ -84,6 +84,7 @@ class Region(models.Model):
 
     def __str__(self):
         return self.nombre
+    
 class Comuna(models.Model):
     nombre = models.CharField(max_length=100)
     region = models.ForeignKey(Region, on_delete=models.CASCADE)
