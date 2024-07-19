@@ -1,0 +1,1424 @@
+Comuna: Arica
+
+Nombre: Casa en la playa
+Descripción: Una hermosa casa frente al mar
+
+Nombre: Casa en la playa
+Descripción: Una hermosa casa frente al mar
+
+Nombre: Departamento con terraza
+Descripción: Amplio departamento con terraza
+
+Nombre: Chalet con jardín
+Descripción: Amplio chalet con hermoso jardín
+
+Nombre: Apartamento moderno
+Descripción: Apartamento con diseño moderno
+
+
+
+Comuna: Camarones
+
+Nombre: Piso en zona residencial
+Descripción: Espacioso piso en una zona tranquila
+
+Nombre: Villa con vistas panorámicas
+Descripción: Villa con impresionantes vistas al mar
+
+
+
+Comuna: Putre
+
+Nombre: Apartamento con vista
+Descripción: Moderno apartamento con vista panorámica
+
+Nombre: Villa con jardín
+Descripción: Villa con amplio jardín privado
+
+Nombre: Casa de campo
+Descripción: Acogedora casa de campo para descanso
+
+
+
+Comuna: General Lagos
+
+Nombre: Casa rural con piscina
+Descripción: Casa rural con piscina privada
+
+
+
+Comuna: Iquique
+
+Nombre: Departamento céntrico
+Descripción: Departamento cerca de todos los servicios
+
+Nombre: Departamento céntrico
+Descripción: Departamento cerca de todos los servicios
+
+Nombre: Casa de playa
+Descripción: Casa frente al mar con acceso directo a la playa
+
+Nombre: Apartamento con piscina
+Descripción: Apartamento con piscina comunitaria
+
+Nombre: Loft en el centro histórico
+Descripción: Moderno loft en el corazón de la ciudad
+
+
+
+Comuna: Alto Hospicio
+
+
+
+Comuna: Pozo Almonte
+
+
+
+Comuna: Camiña
+
+
+
+Comuna: Colchane
+
+
+
+Comuna: Huara
+
+
+
+Comuna: Pica
+
+
+
+Comuna: Antofagasta
+
+
+
+Comuna: Mejillones
+
+
+
+Comuna: Sierra Gorda
+
+
+
+Comuna: Taltal
+
+
+
+Comuna: Calama
+
+
+
+Comuna: Ollagüe
+
+
+
+Comuna: San Pedro de Atacama
+
+
+
+Comuna: Copiapó
+
+
+
+Comuna: Caldera
+
+
+
+Comuna: Tierra Amarilla
+
+
+
+Comuna: Chañaral
+
+
+
+Comuna: Diego de Almagro
+
+
+
+Comuna: Vallenar
+
+
+
+Comuna: Freirina
+
+
+
+Comuna: Huasco
+
+
+
+Comuna: Alto del Carmen
+
+
+
+Comuna: La Serena
+
+
+
+Comuna: Coquimbo
+
+
+
+Comuna: Andacollo
+
+
+
+Comuna: La Higuera
+
+
+
+Comuna: Paiguano
+
+
+
+Comuna: Vicuña
+
+
+
+Comuna: Ovalle
+
+
+
+Comuna: Combarbalá
+
+
+
+Comuna: Monte Patria
+
+
+
+Comuna: Punitaqui
+
+
+
+Comuna: Río Hurtado
+
+
+
+Comuna: Illapel
+
+
+
+Comuna: Canela
+
+
+
+Comuna: Los Vilos
+
+
+
+Comuna: Salamanca
+
+
+
+Comuna: Valparaíso
+
+
+
+Comuna: Casablanca
+
+
+
+Comuna: Concón
+
+
+
+Comuna: Juan Fernández
+
+
+
+Comuna: Puchuncaví
+
+
+
+Comuna: Quintero
+
+
+
+Comuna: Viña del Mar
+
+
+
+Comuna: Isla de Pascua
+
+
+
+Comuna: Los Andes
+
+
+
+Comuna: Calle Larga
+
+
+
+Comuna: Rinconada
+
+
+
+Comuna: San Esteban
+
+
+
+Comuna: La Ligua
+
+
+
+Comuna: Cabildo
+
+
+
+Comuna: Papudo
+
+
+
+Comuna: Petorca
+
+
+
+Comuna: Zapallar
+
+
+
+Comuna: Quillota
+
+
+
+Comuna: Calera
+
+
+
+Comuna: Hijuelas
+
+
+
+Comuna: La Cruz
+
+
+
+Comuna: Nogales
+
+
+
+Comuna: San Antonio
+
+
+
+Comuna: Algarrobo
+
+
+
+Comuna: Cartagena
+
+
+
+Comuna: El Quisco
+
+
+
+Comuna: El Tabo
+
+
+
+Comuna: Santo Domingo
+
+
+
+Comuna: San Felipe
+
+
+
+Comuna: Catemu
+
+
+
+Comuna: Llaillay
+
+
+
+Comuna: Panquehue
+
+
+
+Comuna: Putaendo
+
+
+
+Comuna: Santa María
+
+
+
+Comuna: Quilpué
+
+
+
+Comuna: Limache
+
+
+
+Comuna: Olmué
+
+
+
+Comuna: Villa Alemana
+
+
+
+Comuna: Santiago
+
+
+
+Comuna: Cerrillos
+
+
+
+Comuna: Cerro Navia
+
+
+
+Comuna: Conchalí
+
+
+
+Comuna: El Bosque
+
+
+
+Comuna: Estación Central
+
+
+
+Comuna: Huechuraba
+
+
+
+Comuna: Independencia
+
+
+
+Comuna: La Cisterna
+
+
+
+Comuna: La Florida
+
+
+
+Comuna: La Granja
+
+
+
+Comuna: La Pintana
+
+
+
+Comuna: La Reina
+
+
+
+Comuna: Las Condes
+
+
+
+Comuna: Lo Barnechea
+
+
+
+Comuna: Lo Espejo
+
+
+
+Comuna: Lo Prado
+
+
+
+Comuna: Macul
+
+
+
+Comuna: Maipú
+
+
+
+Comuna: Ñuñoa
+
+
+
+Comuna: Pedro Aguirre Cerda
+
+
+
+Comuna: Peñalolén
+
+
+
+Comuna: Providencia
+
+
+
+Comuna: Pudahuel
+
+
+
+Comuna: Quilicura
+
+
+
+Comuna: Quinta Normal
+
+
+
+Comuna: Recoleta
+
+
+
+Comuna: Renca
+
+
+
+Comuna: San Joaquín
+
+
+
+Comuna: San Miguel
+
+
+
+Comuna: San Ramón
+
+
+
+Comuna: Vitacura
+
+
+
+Comuna: Puente Alto
+
+
+
+Comuna: Pirque
+
+
+
+Comuna: San José de Maipo
+
+
+
+Comuna: Colina
+
+
+
+Comuna: Lampa
+
+
+
+Comuna: Tiltil
+
+
+
+Comuna: San Bernardo
+
+
+
+Comuna: Buin
+
+
+
+Comuna: Calera de Tango
+
+
+
+Comuna: Paine
+
+
+
+Comuna: Melipilla
+
+
+
+Comuna: Alhué
+
+
+
+Comuna: Curacaví
+
+
+
+Comuna: María Pinto
+
+
+
+Comuna: San Pedro
+
+
+
+Comuna: Talagante
+
+
+
+Comuna: El Monte
+
+
+
+Comuna: Isla de Maipo
+
+
+
+Comuna: Padre Hurtado
+
+
+
+Comuna: Peñaflor
+
+
+
+Comuna: Rancagua
+
+
+
+Comuna: Codegua
+
+
+
+Comuna: Coinco
+
+
+
+Comuna: Coltauco
+
+
+
+Comuna: Doñihue
+
+
+
+Comuna: Graneros
+
+
+
+Comuna: Las Cabras
+
+
+
+Comuna: Machalí
+
+
+
+Comuna: Malloa
+
+
+
+Comuna: Mostazal
+
+
+
+Comuna: Olivar
+
+
+
+Comuna: Peumo
+
+
+
+Comuna: Pichidegua
+
+
+
+Comuna: Quinta de Tilcoco
+
+
+
+Comuna: Rengo
+
+
+
+Comuna: Requínoa
+
+
+
+Comuna: San Vicente
+
+
+
+Comuna: Pichilemu
+
+
+
+Comuna: La Estrella
+
+
+
+Comuna: Litueche
+
+
+
+Comuna: Marchihue
+
+
+
+Comuna: Navidad
+
+
+
+Comuna: Paredones
+
+
+
+Comuna: San Fernando
+
+
+
+Comuna: Chépica
+
+
+
+Comuna: Chimbarongo
+
+
+
+Comuna: Lolol
+
+
+
+Comuna: Nancagua
+
+
+
+Comuna: Palmilla
+
+
+
+Comuna: Peralillo
+
+
+
+Comuna: Placilla
+
+
+
+Comuna: Pumanque
+
+
+
+Comuna: Santa Cruz
+
+
+
+Comuna: Talca
+
+
+
+Comuna: Constitución
+
+
+
+Comuna: Curepto
+
+
+
+Comuna: Empedrado
+
+
+
+Comuna: Maule
+
+
+
+Comuna: Pelarco
+
+
+
+Comuna: Pencahue
+
+
+
+Comuna: Río Claro
+
+
+
+Comuna: San Clemente
+
+
+
+Comuna: San Rafael
+
+
+
+Comuna: Cauquenes
+
+
+
+Comuna: Chanco
+
+
+
+Comuna: Pelluhue
+
+
+
+Comuna: Curicó
+
+
+
+Comuna: Hualañé
+
+
+
+Comuna: Licantén
+
+
+
+Comuna: Molina
+
+
+
+Comuna: Rauco
+
+
+
+Comuna: Romeral
+
+
+
+Comuna: Sagrada Familia
+
+
+
+Comuna: Teno
+
+
+
+Comuna: Vichuquén
+
+
+
+Comuna: Linares
+
+
+
+Comuna: Colbún
+
+
+
+Comuna: Longaví
+
+
+
+Comuna: Parral
+
+
+
+Comuna: Retiro
+
+
+
+Comuna: San Javier
+
+
+
+Comuna: Villa Alegre
+
+
+
+Comuna: Yerbas Buenas
+
+
+
+Comuna: Cobquecura
+
+
+
+Comuna: Coelemu
+
+
+
+Comuna: Ninhue
+
+
+
+Comuna: Portezuelo
+
+
+
+Comuna: Quirihue
+
+
+
+Comuna: Ránquil
+
+
+
+Comuna: Treguaco
+
+
+
+Comuna: Bulnes
+
+
+
+Comuna: Chillán
+
+
+
+Comuna: Chillán Viejo
+
+
+
+Comuna: El Carmen
+
+
+
+Comuna: Pemuco
+
+
+
+Comuna: Pinto
+
+
+
+Comuna: Quillón
+
+
+
+Comuna: San Ignacio
+
+
+
+Comuna: Yungay
+
+
+
+Comuna: Coihueco
+
+
+
+Comuna: Ñiquén
+
+
+
+Comuna: San Carlos
+
+
+
+Comuna: San Fabián
+
+
+
+Comuna: San Nicolás
+
+
+
+Comuna: Concepción
+
+
+
+Comuna: Coronel
+
+
+
+Comuna: Chiguayante
+
+
+
+Comuna: Florida
+
+
+
+Comuna: Hualqui
+
+
+
+Comuna: Lota
+
+
+
+Comuna: Penco
+
+
+
+Comuna: San Pedro de la Paz
+
+
+
+Comuna: Santa Juana
+
+
+
+Comuna: Talcahuano
+
+
+
+Comuna: Tomé
+
+
+
+Comuna: Hualpén
+
+
+
+Comuna: Lebu
+
+
+
+Comuna: Arauco
+
+
+
+Comuna: Cañete
+
+
+
+Comuna: Contulmo
+
+
+
+Comuna: Curanilahue
+
+
+
+Comuna: Los Álamos
+
+
+
+Comuna: Tirúa
+
+
+
+Comuna: Los Ángeles
+
+
+
+Comuna: Antuco
+
+
+
+Comuna: Cabrero
+
+
+
+Comuna: Laja
+
+
+
+Comuna: Mulchén
+
+
+
+Comuna: Nacimiento
+
+
+
+Comuna: Negrete
+
+
+
+Comuna: Quilaco
+
+
+
+Comuna: Quilleco
+
+
+
+Comuna: San Rosendo
+
+
+
+Comuna: Santa Bárbara
+
+
+
+Comuna: Tucapel
+
+
+
+Comuna: Yumbel
+
+
+
+Comuna: Alto Biobío
+
+
+
+Comuna: Temuco
+
+
+
+Comuna: Carahue
+
+
+
+Comuna: Cunco
+
+
+
+Comuna: Curarrehue
+
+
+
+Comuna: Freire
+
+
+
+Comuna: Galvarino
+
+
+
+Comuna: Gorbea
+
+
+
+Comuna: Lautaro
+
+
+
+Comuna: Loncoche
+
+
+
+Comuna: Melipeuco
+
+
+
+Comuna: Nueva Imperial
+
+
+
+Comuna: Padre las Casas
+
+
+
+Comuna: Perquenco
+
+
+
+Comuna: Pitrufquén
+
+
+
+Comuna: Pucón
+
+
+
+Comuna: Saavedra
+
+
+
+Comuna: Teodoro Schmidt
+
+
+
+Comuna: Toltén
+
+
+
+Comuna: Vilcún
+
+
+
+Comuna: Villarrica
+
+
+
+Comuna: Cholchol
+
+
+
+Comuna: Angol
+
+
+
+Comuna: Collipulli
+
+
+
+Comuna: Curacautín
+
+
+
+Comuna: Ercilla
+
+
+
+Comuna: Lonquimay
+
+
+
+Comuna: Los Sauces
+
+
+
+Comuna: Lumaco
+
+
+
+Comuna: Purén
+
+
+
+Comuna: Renaico
+
+
+
+Comuna: Traiguén
+
+
+
+Comuna: Victoria
+
+
+
+Comuna: Valdivia
+
+
+
+Comuna: Corral
+
+
+
+Comuna: Lanco
+
+
+
+Comuna: Los Lagos
+
+
+
+Comuna: Máfil
+
+
+
+Comuna: Mariquina
+
+
+
+Comuna: Paillaco
+
+
+
+Comuna: Panguipulli
+
+
+
+Comuna: La Unión
+
+
+
+Comuna: Futrono
+
+
+
+Comuna: Lago Ranco
+
+
+
+Comuna: Río Bueno
+
+
+
+Comuna: Puerto Montt
+
+
+
+Comuna: Calbuco
+
+
+
+Comuna: Cochamó
+
+
+
+Comuna: Fresia
+
+
+
+Comuna: Frutillar
+
+
+
+Comuna: Los Muermos
+
+
+
+Comuna: Llanquihue
+
+
+
+Comuna: Maullín
+
+
+
+Comuna: Puerto Varas
+
+
+
+Comuna: Castro
+
+
+
+Comuna: Ancud
+
+
+
+Comuna: Chonchi
+
+
+
+Comuna: Curaco de Vélez
+
+
+
+Comuna: Dalcahue
+
+
+
+Comuna: Puqueldón
+
+
+
+Comuna: Queilén
+
+
+
+Comuna: Quellón
+
+
+
+Comuna: Quemchi
+
+
+
+Comuna: Quinchao
+
+
+
+Comuna: Osorno
+
+
+
+Comuna: Puerto Octay
+
+
+
+Comuna: Purranque
+
+
+
+Comuna: Puyehue
+
+
+
+Comuna: Río Negro
+
+
+
+Comuna: San Juan de la Costa
+
+
+
+Comuna: San Pablo
+
+
+
+Comuna: Chaitén
+
+
+
+Comuna: Futaleufú
+
+
+
+Comuna: Hualaihué
+
+
+
+Comuna: Palena
+
+
+
+Comuna: Coyhaique
+
+
+
+Comuna: Lago Verde
+
+
+
+Comuna: Aysén
+
+
+
+Comuna: Cisnes
+
+
+
+Comuna: Guaitecas
+
+
+
+Comuna: Cochrane
+
+
+
+Comuna: O'Higgins
+
+
+
+Comuna: Tortel
+
+
+
+Comuna: Chile Chico
+
+
+
+Comuna: Río Ibáñez
+
+
+
+Comuna: Punta Arenas
+
+
+
+Comuna: Laguna Blanca
+
+
+
+Comuna: Río Verde
+
+
+
+Comuna: San Gregorio
+
+
+
+Comuna: Cabo de Hornos
+
+
+
+Comuna: Antártica
+
+
+
+Comuna: Porvenir
+
+
+
+Comuna: Primavera
+
+
+
+Comuna: Timaukel
+
+
+
+Comuna: Natales
+
+
+
+Comuna: Torres del Paine
+
+
+

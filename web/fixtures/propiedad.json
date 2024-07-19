@@ -1,0 +1,224 @@
+[
+    
+    {
+        "model": "web.propiedad",
+        "pk": 4,
+        "fields": {
+            "nombre": "Departamento céntrico",
+            "descripcion": "Departamento cerca de todos los servicios",
+            "m2_construidos": 100,
+            "m2_terreno": 0,
+            "num_estacionamientos": 1,
+            "num_habitaciones": 2,
+            "num_banos": 1,
+            "precio_mensual": 500.00,
+            "arrendador": 2,
+            "tipo_propiedad": 2,
+            "direccion": 2
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 5,
+        "fields": {
+            "nombre": "Chalet con jardín",
+            "descripcion": "Amplio chalet con hermoso jardín",
+            "m2_construidos": 300,
+            "m2_terreno": 800,
+            "num_estacionamientos": 3,
+            "num_habitaciones": 5,
+            "num_banos": 4,
+            "precio_mensual": 1500.00,
+            "arrendador": 3,
+            "tipo_propiedad": 1,
+            "direccion": 3
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 6,
+        "fields": {
+            "nombre": "Apartamento con vista",
+            "descripcion": "Moderno apartamento con vista panorámica",
+            "m2_construidos": 120,
+            "m2_terreno": 0,
+            "num_estacionamientos": 1,
+            "num_habitaciones": 3,
+            "num_banos": 2,
+            "precio_mensual": 800.00,
+            "arrendador": 4,
+            "tipo_propiedad": 2,
+            "direccion": 4
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 7,
+        "fields": {
+            "nombre": "Piso en zona residencial",
+            "descripcion": "Espacioso piso en una zona tranquila",
+            "m2_construidos": 150,
+            "m2_terreno": 0,
+            "num_estacionamientos": 2,
+            "num_habitaciones": 4,
+            "num_banos": 2,
+            "precio_mensual": 1200.00,
+            "arrendador": 4,
+            "tipo_propiedad": 2,
+            "direccion": 5
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 8,
+        "fields": {
+            "nombre": "Casa rural con piscina",
+            "descripcion": "Casa rural con piscina privada",
+            "m2_construidos": 180,
+            "m2_terreno": 1000,
+            "num_estacionamientos": 2,
+            "num_habitaciones": 3,
+            "num_banos": 2,
+            "precio_mensual": 900.00,
+            "arrendador": 3,
+            "tipo_propiedad": 1,
+            "direccion": 6
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 9,
+        "fields": {
+            "nombre": "Apartamento moderno",
+            "descripcion": "Apartamento con diseño moderno",
+            "m2_construidos": 85,
+            "m2_terreno": 0,
+            "num_estacionamientos": 1,
+            "num_habitaciones": 2,
+            "num_banos": 1,
+            "precio_mensual": 600.00,
+            "arrendador": 2,
+            "tipo_propiedad": 2,
+            "direccion": 7
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 10,
+        "fields": {
+            "nombre": "Casa de campo",
+            "descripcion": "Acogedora casa de campo para descanso",
+            "m2_construidos": 160,
+            "m2_terreno": 600,
+            "num_estacionamientos": 2,
+            "num_habitaciones": 3,
+            "num_banos": 2,
+            "precio_mensual": 850.00,
+            "arrendador": 3,
+            "tipo_propiedad": 1,
+            "direccion": 8
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 11,
+        "fields": {
+            "nombre": "Loft en el centro histórico",
+            "descripcion": "Moderno loft en el corazón de la ciudad",
+            "m2_construidos": 110,
+            "m2_terreno": 0,
+            "num_estacionamientos": 1,
+            "num_habitaciones": 1,
+            "num_banos": 1,
+            "precio_mensual": 700.00,
+            "arrendador": 3,
+            "tipo_propiedad": 2,
+            "direccion": 9
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 12,
+        "fields": {
+            "nombre": "Villa con vistas panorámicas",
+            "descripcion": "Villa con impresionantes vistas al mar",
+            "m2_construidos": 250,
+            "m2_terreno": 1200,
+            "num_estacionamientos": 3,
+            "num_habitaciones": 4,
+            "num_banos": 3,
+            "precio_mensual": 1800.00,
+            "arrendador": 4,
+            "tipo_propiedad": 1,
+            "direccion": 10
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 13,
+        "fields": {
+            "nombre": "Departamento con terraza",
+            "descripcion": "Amplio departamento con terraza",
+            "m2_construidos": 130,
+            "m2_terreno": 0,
+            "num_estacionamientos": 2,
+            "num_habitaciones": 3,
+            "num_banos": 2,
+            "precio_mensual": 950.00,
+            "arrendador": 1,
+            "tipo_propiedad": 2,
+            "direccion": 1
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 14,
+        "fields": {
+            "nombre": "Casa de playa",
+            "descripcion": "Casa frente al mar con acceso directo a la playa",
+            "m2_construidos": 220,
+            "m2_terreno": 700,
+            "num_estacionamientos": 2,
+            "num_habitaciones": 4,
+            "num_banos": 3,
+            "precio_mensual": 1300.00,
+            "arrendador": 2,
+            "tipo_propiedad": 1,
+            "direccion": 2
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 15,
+        "fields": {
+            "nombre": "Apartamento con piscina",
+            "descripcion": "Apartamento con piscina comunitaria",
+            "m2_construidos": 95,
+            "m2_terreno": 0,
+            "num_estacionamientos": 1,
+            "num_habitaciones": 2,
+            "num_banos": 1,
+            "precio_mensual": 650.00,
+            "arrendador": 3,
+            "tipo_propiedad": 2,
+            "direccion": 2
+        }
+    },
+    {
+        "model": "web.propiedad",
+        "pk": 16,
+        "fields": {
+            "nombre": "Villa con jardín",
+            "descripcion": "Villa con amplio jardín privado",
+            "m2_construidos": 280,
+            "m2_terreno": 1500,
+            "num_estacionamientos": 3,
+            "num_habitaciones": 5,
+            "num_banos": 4,
+            "precio_mensual": 2000.00,
+            "arrendador": 1,
+            "tipo_propiedad": 1,
+            "direccion": 4
+        }
+    }
+  ]

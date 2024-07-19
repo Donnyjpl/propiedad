@@ -1,0 +1,52 @@
+
+=== Región: Arica y Parinacota ===
+Propiedad: Apartamento con vista
+Descripción: Moderno apartamento con vista panorámica
+
+Propiedad: Apartamento moderno
+Descripción: Apartamento con diseño moderno
+
+Propiedad: Casa de campo
+Descripción: Acogedora casa de campo para descanso
+
+Propiedad: Casa en la playa
+Descripción: Una hermosa casa frente al mar
+
+Propiedad: Casa en la playa
+Descripción: Una hermosa casa frente al mar
+
+Propiedad: Casa rural con piscina
+Descripción: Casa rural con piscina privada
+
+Propiedad: Chalet con jardín
+Descripción: Amplio chalet con hermoso jardín
+
+Propiedad: Departamento con terraza
+Descripción: Amplio departamento con terraza
+
+Propiedad: Piso en zona residencial
+Descripción: Espacioso piso en una zona tranquila
+
+Propiedad: Villa con jardín
+Descripción: Villa con amplio jardín privado
+
+Propiedad: Villa con vistas panorámicas
+Descripción: Villa con impresionantes vistas al mar
+
+
+=== Región: Tarapacá ===
+Propiedad: Apartamento con piscina
+Descripción: Apartamento con piscina comunitaria
+
+Propiedad: Casa de playa
+Descripción: Casa frente al mar con acceso directo a la playa
+
+Propiedad: Departamento céntrico
+Descripción: Departamento cerca de todos los servicios
+
+Propiedad: Departamento céntrico
+Descripción: Departamento cerca de todos los servicios
+
+Propiedad: Loft en el centro histórico
+Descripción: Moderno loft en el corazón de la ciudad
+

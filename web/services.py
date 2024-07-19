@@ -1,7 +1,7 @@
 from .models import Usuario, Propiedad, ImagenPropiedad, SolicitudArriendo, Region, Comuna, Direccion
-
+import json
 # Funciones para Usuario
-
+import os
 def crear_usuario(data):
     return Usuario.objects.create(**data)
 
@@ -221,3 +221,34 @@ def listar_direcciones():
         else:
             resultado += f"{direccion.id} - {direccion.calle} {direccion.numero}, {direccion.comuna.nombre}\n"
     return resultado
+
+def cambiar():
+    # Obtener la ruta completa del archivo comuna.json
+    ruta_archivo = os.path.join('C:\\Users\\56954\\Desktop\\Propiedad\\web\\', 'regiones-comunas-chile.json')
+
+    try:
+        # Abrir el archivo JSON con la codificación UTF-8
+        with open(ruta_archivo, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        # Iterar sobre cada objeto en la lista
+        for obj in data:
+            # Reemplazar "app.comuna" por "web.comuna"
+            if obj.get('model') == 'app.comuna':
+                obj['model'] = 'web.comuna'
+
+        # Guardar los cambios de vuelta al archivo JSON
+        with open(ruta_archivo, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=4, ensure_ascii=False)
+
+        print("Se ha completado el cambio en el archivo JSON.")
+
+    except FileNotFoundError:
+        print(f"No se encontró el archivo {ruta_archivo}. Verifica la ruta y asegúrate de que el archivo exista.")
+
+    except UnicodeDecodeError as e:
+        print(f"Error de decodificación Unicode: {e}")
+
+# Llamar a la función si se ejecuta como script independiente
+if __name__ == "__main__":
+    cambiar()

@@ -30,13 +30,16 @@ class Usuario(AbstractUser):
 
     def __str__(self):
         return f"{self.username} {self.last_name}"
+    
+    
+    
+class TipoPropiedad(models.Model):
+    nombre_tipo = models.CharField( max_length=50)
+    def __str__(self):
+        return self.nombre_tipo
+        
 class Propiedad(models.Model):
-    TIPO_INMUEBLE_CHOICES = [
-        ('casa', 'Casa'),
-        ('departamento', 'Departamento'),
-        ('parcela', 'Parcela'),
-    ]
-
+    
     nombre = models.CharField(max_length=255)
     descripcion = models.TextField()
     m2_construidos = models.DecimalField(max_digits=10, decimal_places=2)
@@ -45,13 +48,13 @@ class Propiedad(models.Model):
     num_habitaciones = models.IntegerField()
     num_banos = models.IntegerField()
     direccion = models.ForeignKey('Direccion', on_delete=models.SET_NULL, null=True)
-    tipo_inmueble = models.CharField(max_length=20, choices=TIPO_INMUEBLE_CHOICES)
+    tipo_propiedad = models.ForeignKey(TipoPropiedad, on_delete=models.CASCADE, related_name='propiedad')
     precio_mensual = models.DecimalField(max_digits=10, decimal_places=2)
     arrendador = models.ForeignKey(Usuario, related_name='propiedades_arrendadas', on_delete=models.CASCADE)
     arrendatario = models.ForeignKey(Usuario, related_name='propiedades_arrendadas_a_mi', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.nombre}y el tipo {self.tipo_inmueble}"
+        return f"{self.nombre}y el tipo {self.tipo_propiedad}"
     
     
 class ImagenPropiedad(models.Model):
@@ -79,6 +82,7 @@ class SolicitudArriendo(models.Model):
     def __str__(self):
         return f"Solicitud de arriendo de {self.usuario} para {self.propiedad}"
 class Region(models.Model):
+
     nombre = models.CharField(max_length=100, unique=True)
     # Otros campos relevantes para la región
 

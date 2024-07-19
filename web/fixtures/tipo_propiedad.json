@@ -1,0 +1,24 @@
+[
+    {
+      "model": "web.tipopropiedad",
+      "pk": 1,
+      "fields": {
+        "nombre_tipo": "Casa"
+      }
+    },
+    {
+      "model": "web.tipopropiedad",
+      "pk": 2,
+      "fields": {
+        "nombre_tipo": "Departamento"
+      }
+    },
+    {
+      "model": "web.tipopropiedad",
+      "pk": 3,
+      "fields": {
+        "nombre_tipo": "Terreno"
+      }
+    }
+   
+  ]

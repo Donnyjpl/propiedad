@@ -1,0 +1,54 @@
+[
+  {
+    "model": "web.usuario",
+    "pk": 1,
+    "fields": {
+      "username": "usuario1",
+      "first_name": "Nombre1",
+      "last_name": "Apellido1",
+      "email": "usuario1@example.com",
+      "RUT": "12345678-9",
+      "telefono_personal": "987654321",
+      "tipo_usuario": "arrendador"
+    }
+  },
+  {
+    "model": "web.usuario",
+    "pk": 2,
+    "fields": {
+      "username": "usuario2",
+      "first_name": "Nombre2",
+      "last_name": "Apellido2",
+      "email": "usuario2@example.com",
+      "RUT": "98765432-1",
+      "telefono_personal": "123456789",
+      "tipo_usuario": "arrendatario"
+    }
+  },
+  {
+    "model": "web.usuario",
+    "pk": 3,
+    "fields": {
+      "username": "evanny",
+      "first_name": "evanny",
+      "last_name": "Apellido1",
+      "email": "usuario1@example.com",
+      "RUT": "12345678-8",
+      "telefono_personal": "987654321",
+      "tipo_usuario": "arrendador"
+    }
+  },
+  {
+    "model": "web.usuario",
+    "pk": 4,
+    "fields": {
+      "username": "donny",
+      "first_name": "donny",
+      "last_name": "Apellido2",
+      "email": "usuario2@example.com",
+      "RUT": "98765432-2",
+      "telefono_personal": "123456789",
+      "tipo_usuario": "arrendatario"
+    }
+  }
+]

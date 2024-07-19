@@ -1,0 +1,19 @@
+[
+    {"model": "web.region", "pk": 1, "fields": {"nombre": "Arica y Parinacota"}},
+    {"model": "web.region", "pk": 2, "fields": {"nombre": "Tarapacá"}},
+    {"model": "web.region", "pk": 3, "fields": {"nombre": "Antofagasta"}},
+    {"model": "web.region", "pk": 4, "fields": {"nombre": "Atacama"}},
+    {"model": "web.region", "pk": 5, "fields": {"nombre": "Coquimbo"}},
+    {"model": "web.region", "pk": 6, "fields": {"nombre": "Valparaíso"}},
+    {"model": "web.region", "pk": 7, "fields": {"nombre": "Región del Libertador Gral. Bernardo O’Higgins"}},
+    {"model": "web.region", "pk": 8, "fields": {"nombre": "Región del Maule"}},
+    {"model": "web.region", "pk": 9, "fields": {"nombre": "Región de Ñuble"}},
+    {"model": "web.region", "pk": 10, "fields": {"nombre": "Región del Biobío"}},
+    {"model": "web.region", "pk": 11, "fields": {"nombre": "Región de la Araucanía"}},
+    {"model": "web.region", "pk": 12, "fields": {"nombre": "Región de Los Ríos"}},
+    {"model": "web.region", "pk": 13, "fields": {"nombre": "Región de Los Lagos"}},
+    {"model": "web.region", "pk": 14, "fields": {"nombre": "Región Aisén del Gral. Carlos Ibáñez del Campo"}},
+    {"model": "web.region", "pk": 15, "fields": {"nombre": "Región de Magallanes y de la Antártica Chilena"}},
+    {"model": "web.region", "pk": 16, "fields": {"nombre": "Región Metropolitana de Santiago"}}
+
+]

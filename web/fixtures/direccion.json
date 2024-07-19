@@ -1,0 +1,72 @@
+[
+    {
+        "model": "web.direccion",
+        "pk": 4,
+        "fields": {
+            "calle": "Avenida Principal",
+            "numero": "567",
+            "punto_referencia": "Junto al supermercado",
+            "comuna_id": 3
+        }
+    },
+    {
+        "model": "web.direccion",
+        "pk": 5,
+        "fields": {
+            "calle": "Calle del Centro",
+            "numero": "890",
+            "punto_referencia": "Frente al teatro",
+            "comuna_id": 2
+        }
+    },
+    {
+        "model": "web.direccion",
+        "pk": 6,
+        "fields": {
+            "calle": "Avenida Costanera",
+            "numero": "345",
+            "punto_referencia": "Cerca del puerto",
+            "comuna_id": 4
+        }
+    },
+    {
+        "model": "web.direccion",
+        "pk": 7,
+        "fields": {
+            "calle": "Pasaje Peatonal",
+            "numero": "12",
+            "punto_referencia": "Entre calles A y B",
+            "comuna_id": 1
+        }
+    },
+    {
+        "model": "web.direccion",
+        "pk": 8,
+        "fields": {
+            "calle": "Calle Residencial",
+            "numero": "234",
+            "punto_referencia": "",
+            "comuna_id": 3
+        }
+    },
+    {
+        "model": "web.direccion",
+        "pk": 9,
+        "fields": {
+            "calle": "Avenida de los Robles",
+            "numero": "678",
+            "punto_referencia": "Cerca del bosque",
+            "comuna_id": 5
+        }
+    },
+    {
+        "model": "web.direccion",
+        "pk": 10,
+        "fields": {
+            "calle": "Calle de la Plaza",
+            "numero": "910",
+            "punto_referencia": "Frente a la iglesia",
+            "comuna_id": 2
+        }
+    }
+]
