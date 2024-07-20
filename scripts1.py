@@ -35,3 +35,10 @@ def guardar_inmuebles_por_comunas():
 if __name__ == "__main__":
     guardar_inmuebles_por_comunas()
     print("Datos de inmuebles por comunas guardados en 'inmuebles_por_comunas.txt'")
+    
+    """ 
+    SELECT c.nombre AS comuna, p.nombre AS propiedad, p.descripcion 
+FROM web_propiedad AS p
+INNER JOIN web_direccion AS d ON p.direccion_id = d.id
+INNER JOIN web_comuna AS c ON d.comuna_id = c.id
+ORDER BY c.nombre, p.nombre; """
