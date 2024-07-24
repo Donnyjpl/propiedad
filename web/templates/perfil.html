@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi perfil</title>
+</head>
+<body>
+    <h2>Perfil de {{ usuario.username }}</h2>
+    <p>Nombre: {{ usuario.first_name }} {{ usuario.last_name }}</p>
+    <p>Email: {{ usuario.email }}</p>
+    <p>RUT: {{ usuario.RUT }}</p>
+    <p>Teléfono personal: {{ usuario.telefono_personal }}</p>
+    <p>Tipo de usuario: {{ usuario.get_tipo_usuario_display }}</p>
+    <!-- Puedes mostrar otros campos según sea necesario -->
+</body>
+</html>

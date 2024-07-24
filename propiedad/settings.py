@@ -29,15 +29,18 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+LOGIN_REDIRECT_URL = '/perfil/'
+
 
 INSTALLED_APPS = [
+    "web",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "web"
+    
 ]
 
 MIDDLEWARE = [
