@@ -53,26 +53,48 @@ class UsuarioUpdateForm(forms.ModelForm):
             usuario.save()
 
         return usuario
- 
+
+
 class UsuarioForm(forms.ModelForm):
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirmar contraseña', widget=forms.PasswordInput)
-    direccion = forms.ModelChoiceField(queryset=Direccion.objects.all(), empty_label=None)
-
+    region = forms.ModelChoiceField(queryset=Region.objects.all(), empty_label="Seleccionar región")
+    comuna = forms.ModelChoiceField(queryset=Comuna.objects.none(), empty_label="Seleccionar comuna")
+    
     class Meta:
         model = Usuario
-        fields = ['username', 'email', 'telefono_personal', 'rut', 'direccion']
+        fields = ['username', 'rut', 'email', 'telefono_personal', 'region', 'comuna']
         labels = {
             'username': 'Nombre de usuario',
             'email': 'Correo electrónico',
             'telefono_personal': 'Teléfono',
-            'direccion': 'Dirección',
+            'region': 'Región',
+            'comuna': 'Comuna',
         }
         error_messages = {
             'username': {
                 'unique': 'Ya existe un usuario con ese nombre de usuario. Por favor, elige otro.',
             }
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Cargar las regiones disponibles en el formulario
+        self.fields['region'].queryset = Region.objects.all()
+
+        # Si hay datos posteados (POST request), filtrar las comunas basadas en la región seleccionada
+        if 'region' in self.data:
+            try:
+                region_id = int(self.data.get('region'))
+                self.fields['comuna'].queryset = Comuna.objects.filter(region_id=region_id).order_by('nombre')
+            except (ValueError, TypeError):
+                pass  # Si hay algún error al intentar obtener el ID de la región, no se filtra nada
+        
+        # Si ya existe una instancia de usuario (estamos en una actualización), cargar las opciones seleccionadas
+        elif self.instance.pk and self.instance.direccion and self.instance.direccion.comuna:
+            self.fields['region'].initial = self.instance.direccion.comuna.region
+            self.fields['comuna'].queryset = Comuna.objects.filter(region=self.instance.direccion.comuna.region).order_by('nombre')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -84,14 +106,27 @@ class UsuarioForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
+
         if commit:
             user.save()
-            # Asignar la dirección al usuario
-            direccion_id = self.cleaned_data.get('direccion').id  # Obtener el ID de la dirección seleccionada
-            user.direccion_id = direccion_id
-            user.save()
+
+            # Asignar la dirección al usuario si existe
+            if 'region' in self.cleaned_data and 'comuna' in self.cleaned_data:
+                region_id = self.cleaned_data['region'].id
+                comuna_id = self.cleaned_data['comuna'].id
+                direccion, created = Direccion.objects.get_or_create(
+                    comuna_id=comuna_id,
+                    defaults={
+                        'calle': 'Sin especificar',
+                        'numero': 'Sin especificar',
+                        'punto_referencia': 'Sin especificar'
+                    }
+                )
+                user.direccion = direccion
+                user.save()
+
         return user
-    
+
     
 class LoginForm(forms.Form):
     username = forms.CharField(label='Nombre de usuario')

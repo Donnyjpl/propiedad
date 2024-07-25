@@ -3,7 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import UsuarioUpdateForm,UsuarioForm,LoginForm
-from .models import Usuario
+from .models import Usuario,Comuna,Region
+from django.http import JsonResponse
+
 
 # Create your views here.
 
@@ -59,3 +61,13 @@ def modificar_perfil(request):
     else:
         form = UsuarioUpdateForm(instance=usuario)
     return render(request, 'modificar_perfil.html', {'form': form})
+
+def formulario_view(request):
+    regions = Region.objects.all()
+    return render(request, 'form.html', {'regions': regions})
+
+def get_comunas(request):
+    region_id = request.GET.get('region_id')
+    comunas = Comuna.objects.filter(region_id=region_id)
+    comunas_list = list(comunas.values('id', 'nombre'))
+    return JsonResponse(comunas_list, safe=False)

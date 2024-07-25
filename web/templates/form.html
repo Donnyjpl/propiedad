@@ -1,0 +1,58 @@
+<!-- form.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+    Modificar usuario
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="region">Región</label>
+        <select id="region" name="region">
+            {% for region in regions %}
+                <option value="{{ region.id }}">{{ region.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="comuna">Comuna</label>
+        <select id="comuna" name="comuna">
+            <!-- Comunas se llenarán dinámicamente aquí -->
+        </select>
+    </div>
+
+    <button type="submit">Enviar</button>
+</form>
+
+<script>
+    document.getElementById('region').addEventListener('change', function() {
+        var regionId = this.value;
+        var comunaSelect = document.getElementById('comuna');
+
+        // Limpia el menú de comunas
+        comunaSelect.innerHTML = '';
+
+        fetch(`/get_comunas/?region_id=${regionId}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(comuna => {
+                    var option = document.createElement('option');
+                    option.value = comuna.id;
+                    option.text = comuna.nombre;
+                    comunaSelect.add(option);
+                });
+            });
+    });
+
+    // Opcional: carga comunas si ya hay una región seleccionada al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+        var regionId = document.getElementById('region').value;
+        if (regionId) {
+            document.getElementById('region').dispatchEvent(new Event('change'));
+        }
+    });
+</script>
+{% endblock %}
