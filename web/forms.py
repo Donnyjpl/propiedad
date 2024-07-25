@@ -1,7 +1,98 @@
-from .models import Usuario
 from django import forms
+from .models import Usuario, Region, Comuna, Direccion
+
 
 class UsuarioUpdateForm(forms.ModelForm):
+    direccion_calle = forms.CharField(max_length=255)
+    direccion_numero = forms.CharField(max_length=10)
+    direccion_punto_referencia = forms.CharField(max_length=255, required=False)
+    region = forms.ModelChoiceField(queryset=Region.objects.all(), empty_label="Seleccionar región")
+    comuna = forms.ModelChoiceField(queryset=Comuna.objects.none(), empty_label="Seleccionar comuna")
+
     class Meta:
         model = Usuario
-        fields = ['first_name', 'last_name', 'email', 'telefono_personal', 'tipo_usuario', 'direccion']
+        fields = ['first_name', 'last_name', 'rut', 'email', 'telefono_personal', 'tipo_usuario', 'region', 'comuna']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        if self.instance:
+            # Verificar si la instancia tiene una región definida
+            if hasattr(self.instance, 'direccion') and self.instance.direccion and self.instance.direccion.comuna:
+                self.fields['direccion_calle'].initial = self.instance.direccion.calle
+                self.fields['direccion_numero'].initial = self.instance.direccion.numero
+                self.fields['direccion_punto_referencia'].initial = self.instance.direccion.punto_referencia
+                self.fields['region'].initial = self.instance.direccion.comuna.region
+                self.fields['comuna'].queryset = Comuna.objects.filter(region=self.instance.direccion.comuna.region).order_by('nombre')
+            else:
+                # Si no hay una región definida para la instancia, dejar el queryset vacío
+                self.fields['comuna'].queryset = Comuna.objects.none()
+        else:
+            # Cuando se está creando un nuevo usuario, se deja el queryset de comuna vacío inicialmente
+            self.fields['comuna'].queryset = Comuna.objects.none()
+
+    def save(self, commit=True):
+        usuario = super().save(commit=False)
+        direccion_calle = self.cleaned_data['direccion_calle']
+        direccion_numero = self.cleaned_data['direccion_numero']
+        direccion_punto_referencia = self.cleaned_data['direccion_punto_referencia']
+        region = self.cleaned_data['region']
+        comuna = self.cleaned_data['comuna']
+
+        # Buscar o crear la dirección
+        direccion, created = Direccion.objects.get_or_create(
+            calle=direccion_calle,
+            numero=direccion_numero,
+            punto_referencia=direccion_punto_referencia,
+            comuna=comuna
+        )
+
+        usuario.direccion = direccion
+
+        if commit:
+            usuario.save()
+
+        return usuario
+ 
+class UsuarioForm(forms.ModelForm):
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirmar contraseña', widget=forms.PasswordInput)
+    direccion = forms.ModelChoiceField(queryset=Direccion.objects.all(), empty_label=None)
+
+    class Meta:
+        model = Usuario
+        fields = ['username', 'email', 'telefono_personal', 'rut', 'direccion']
+        labels = {
+            'username': 'Nombre de usuario',
+            'email': 'Correo electrónico',
+            'telefono_personal': 'Teléfono',
+            'direccion': 'Dirección',
+        }
+        error_messages = {
+            'username': {
+                'unique': 'Ya existe un usuario con ese nombre de usuario. Por favor, elige otro.',
+            }
+        }
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Las contraseñas no coinciden")
+        return password2
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+            # Asignar la dirección al usuario
+            direccion_id = self.cleaned_data.get('direccion').id  # Obtener el ID de la dirección seleccionada
+            user.direccion_id = direccion_id
+            user.save()
+        return user
+    
+    
+class LoginForm(forms.Form):
+    username = forms.CharField(label='Nombre de usuario')
+    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)

@@ -2,13 +2,13 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
-    RUT = models.CharField(max_length=12, unique=True)
+    rut = models.CharField(max_length=12, unique=True)
     telefono_personal = models.CharField(max_length=15)
     tipo_usuario_choices = [
         ('arrendatario', 'Arrendatario'),
         ('arrendador', 'Arrendador'),
     ]
-    tipo_usuario = models.CharField(max_length=12, choices=tipo_usuario_choices)
+    tipo_usuario = models.CharField(max_length=12, choices=tipo_usuario_choices, default='arrendatario')
     direccion = models.ForeignKey('Direccion', on_delete=models.SET_NULL, null=True)
     
      # Define related_name único para los campos ManyToManyField
@@ -104,6 +104,6 @@ class Direccion(models.Model):
 
     def __str__(self):
         if self.punto_referencia:
-            return f"{self.calle} {self.numero}, {self.punto_referencia}, {self.comuna}, {self.region}"
+            return f"{self.calle} {self.numero}, {self.punto_referencia}, {self.comuna}"
         else:
-            return f"{self.calle} {self.numero}, {self.comuna}, {self.region}"
+            return f"{self.calle} {self.numero}, {self.comuna}"

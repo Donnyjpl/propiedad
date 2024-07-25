@@ -1,10 +1,9 @@
- <!-- Navbar -->
- {% load static %}
- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="#" width="30" height="40" class="d-inline-block align-top"
-                alt="">
+            <img src="#" width="30" height="40" class="d-inline-block align-top" alt="">
+            <!-- Asegúrate de proporcionar una URL válida para tu logo -->
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,16 +16,18 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
-                    
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'modificar_perfil' %}">Modificar Perfil</a>
-                    
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link nav-custom" href="{% url 'logout' %}">Cerrar Sesión</a>
                 </li>
+                {% if user.is_authenticated %}
+                <!-- Mostrar botón de cerrar sesión si el usuario está autenticado -->
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link btn btn-link">Cerrar sesión</button>
+                </form>
                 {% else %}
+                <!-- Mostrar enlace de iniciar sesión si el usuario no está autenticado -->
                 <li class="nav-item">
                     <a class="nav-link nav-custom" href="{% url 'login' %}">Iniciar Sesión</a>
                 </li>
