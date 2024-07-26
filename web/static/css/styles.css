@@ -1,4 +1,4 @@
-/* Estilo global para el cuerpo y html */
+/* /* Estilo global para el cuerpo y html 
 body, html {
     margin: 0;
     padding: 0;
@@ -6,16 +6,16 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
-/* Contenedor principal que incluye el navbar, el contenido principal y el footer */
+/* Contenedor principal que incluye el navbar, el contenido principal y el footer 
 .wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Estilo del navbar */
+/* Estilo del navbar 
 .navbar {
-    height: 60px; /* Ajusta según la altura real del navbar */
+    height: 60px; /* Ajusta según la altura real del navbar 
     background-color: #333;
     color: white;
     display: flex;
@@ -24,9 +24,9 @@ body, html {
     box-sizing: border-box;
 }
 
-/* Estilo del contenido principal */
+/* Estilo del contenido principal 
 .main-content {
-    flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
+    flex: 1; /* Hace que el contenido principal ocupe el espacio restante 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,7 +34,7 @@ body, html {
     box-sizing: border-box;
 }
 
-/* Estilo para centrar el formulario */
+/* Estilo para centrar el formulario 
 .container {
     display: flex;
     justify-content: center;
@@ -42,10 +42,10 @@ body, html {
     width: 100%;
 }
 
-/* Estilo del contenedor del formulario */
+/* Estilo del contenedor del formulario 
 .form-container {
     width: 100%;
-    max-width: 500px; /* Ancho máximo del formulario */
+    max-width: 500px; /* Ancho máximo del formulario 
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -54,63 +54,63 @@ body, html {
     box-sizing: border-box;
 }
 
-/* Estilo opcional para las etiquetas */
+/* Estilo opcional para las etiquetas 
 label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold; /* Negrita para las etiquetas */
+    font-weight: bold; /* Negrita para las etiquetas 
 }
 
-/* Estilo para mensajes de error */
+/* Estilo para mensajes de error 
 .error {
     color: red;
 }
 
-/* Estilo para los campos del formulario */
+/* Estilo para los campos del formulario 
 input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="password"],
 select {
     width: 100%;
-    padding: 12px; /* Aumenta el padding para campos más grandes */
-    margin-bottom: 15px; /* Aumenta el margen para mayor separación */
+    padding: 12px; /* Aumenta el padding para campos más grandes 
+    margin-bottom: 15px; /* Aumenta el margen para mayor separación 
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: 16px; /* Aumenta el tamaño de la fuente para mayor legibilidad */
+    font-size: 16px; /* Aumenta el tamaño de la fuente para mayor legibilidad 
 }
 
-/* Estilo para el botón */
+/* Estilo para el botón 
 button {
     background-color: #4CAF50;
     color: white;
-    padding: 12px 20px; /* Aumenta el padding del botón */
+    padding: 12px 20px; /* Aumenta el padding del botón 
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px; /* Aumenta el tamaño de la fuente del botón */
+    font-size: 16px; /* Aumenta el tamaño de la fuente del botón 
     display: block;
-    margin: 20px auto 0; /* Centra el botón horizontalmente */
+    margin: 20px auto 0; /* Centra el botón horizontalmente 
 }
 
 button:hover {
-    background-color: #45a049; /* Cambia el color al pasar el ratón */
+    background-color: #45a049; /* Cambia el color al pasar el ratón 
 }
 
-/* Estilo del footer */
+/* Estilo del footer 
 .footer {
-    height: 60px; /* Ajusta según la altura real del footer */
+    height: 60px; /* Ajusta según la altura real del footer 
     background-color: #f1f1f1;
     text-align: center;
     padding: 10px;
     box-sizing: border-box;
 }
 
-/* Estilos opcionales */
+/* Estilos opcionales 
 .profile-container {
     width: 100%;
-    max-width: 600px; /* Ancho máximo del perfil */
+    max-width: 600px; /* Ancho máximo del perfil 
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -131,3 +131,4 @@ h3 {
 p {
     margin-bottom: 5px;
 }
+ */

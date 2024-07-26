@@ -12,19 +12,19 @@ Perfil de usuario
 
 <div class="profile-container">
     <h2>Perfil de {{ usuario.username }}</h2>
-    <p>Nombre: {{ usuario.first_name }} {{ usuario.last_name }}</p>
-    <p>Email: {{ usuario.email }}</p>
-    <p>RUT: {{ usuario.rut }}</p>
+    <p>Nombre: {{ usuario.first_name|title }} {{ usuario.last_name|title  }}</p>
+    <p>Email: {{ usuario.email|title  }}</p>
+    <p>RUT: {{ usuario.rut|title  }}</p>
     <p>Teléfono personal: {{ usuario.telefono_personal }}</p>
-    <p>Tipo de usuario: {{ usuario.get_tipo_usuario_display }}</p>
+    <p>Tipo de usuario: {{ usuario.get_tipo_usuario_display|title  }}</p>
 
     <!-- Mostrar la dirección del usuario -->
     {% if usuario.direccion %}
         <h3>Dirección</h3>
-        <p>Calle: {{ usuario.direccion.calle }}</p>
-        <p>Número: {{ usuario.direccion.numero }}</p>
-        <p>Punto de referencia: {{ usuario.direccion.punto_referencia }}</p>
-        <p>Comuna: {{ usuario.direccion.comuna.nombre }}</p>
+        <p>Calle: {{ usuario.direccion.calle|title  }}</p>
+        <p>Número: {{ usuario.direccion.numero|title  }}</p>
+        <p>Punto de referencia: {{ usuario.direccion.punto_referencia|title  }}</p>
+        <p>Comuna: {{ usuario.direccion.comuna.nombre|title  }}</p>
     {% else %}
         <p>Aún no se ha registrado una dirección.</p>
     {% endif %}

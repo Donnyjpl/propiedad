@@ -13,6 +13,15 @@ class UsuarioUpdateForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ['first_name', 'last_name', 'rut', 'email', 'telefono_personal', 'tipo_usuario', 'region', 'comuna']
+        labels = {
+            'first_name':'Nombre',
+            'last_name': 'Apellido',
+            'username': 'Nombre de usuario',
+            'email': 'Correo electrónico',
+            'telefono_personal': 'Teléfono',
+            'region': 'Región',
+            'comuna': 'Comuna',
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -63,8 +72,10 @@ class UsuarioForm(forms.ModelForm):
     
     class Meta:
         model = Usuario
-        fields = ['username', 'rut', 'email', 'telefono_personal', 'region', 'comuna']
+        fields = ['first_name', 'last_name','username', 'rut', 'email', 'telefono_personal', 'region', 'comuna']
         labels = {
+            'first_name':'Nombre',
+            'last_name': 'Apellido',
             'username': 'Nombre de usuario',
             'email': 'Correo electrónico',
             'telefono_personal': 'Teléfono',
@@ -126,7 +137,6 @@ class UsuarioForm(forms.ModelForm):
                 user.save()
 
         return user
-    
 
 
 class LoginForm(AuthenticationForm):
