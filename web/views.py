@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UsuarioUpdateForm,UsuarioForm,LoginForm
 from .models import Usuario,Comuna,Region
 from django.http import JsonResponse
+from django.contrib import messages
 
 
 # Create your views here.
@@ -66,8 +67,8 @@ def formulario_view(request):
     regions = Region.objects.all()
     return render(request, 'form.html', {'regions': regions})
 
-def get_comunas(request):
+
+def obtener_comunas(request):
     region_id = request.GET.get('region_id')
-    comunas = Comuna.objects.filter(region_id=region_id)
-    comunas_list = list(comunas.values('id', 'nombre'))
-    return JsonResponse(comunas_list, safe=False)
+    comunas = Comuna.objects.filter(region_id=region_id).values('id', 'nombre')
+    return JsonResponse(list(comunas), safe=False)

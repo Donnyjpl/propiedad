@@ -1,13 +1,139 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Modificar usuario
+Actualizar Usuario
 {% endblock %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar cambios</button>
-</form>
+
+>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h2>Actualizar Usuario</h2>
+
+        <form method="post" id="formulario-usuario">
+            {% csrf_token %}
+
+            {{ form.non_field_errors }}
+
+            <div>
+                {{ form.first_name.label_tag }}
+                {{ form.first_name }}
+                {{ form.first_name.errors }}
+            </div>
+
+            <div>
+                {{ form.last_name.label_tag }}
+                {{ form.last_name }}
+                {{ form.last_name.errors }}
+            </div>
+
+            <div>
+                {{ form.rut.label_tag }}
+                {{ form.rut }}
+                {{ form.rut.errors }}
+            </div>
+
+            <div>
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+
+            <div>
+                {{ form.telefono_personal.label_tag }}
+                {{ form.telefono_personal }}
+                {{ form.telefono_personal.errors }}
+            </div>
+
+            <div>
+                {{ form.tipo_usuario.label_tag }}
+                {{ form.tipo_usuario }}
+                {{ form.tipo_usuario.errors }}
+            </div>
+
+            <div>
+                {{ form.region.label_tag }}
+                {{ form.region }}
+                {{ form.region.errors }}
+            </div>
+
+            <div>
+                {{ form.comuna.label_tag }}
+                {{ form.comuna }}
+                {{ form.comuna.errors }}
+            </div>
+
+            <div>
+                {{ form.direccion_calle.label_tag }}
+                {{ form.direccion_calle }}
+                {{ form.direccion_calle.errors }}
+            </div>
+
+            <div>
+                {{ form.direccion_numero.label_tag }}
+                {{ form.direccion_numero }}
+                {{ form.direccion_numero.errors }}
+            </div>
+
+            <div>
+                {{ form.direccion_punto_referencia.label_tag }}
+                {{ form.direccion_punto_referencia }}
+                {{ form.direccion_punto_referencia.errors }}
+            </div>
+
+            <button type="submit">Guardar Usuario</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+ <script>
+    $(document).ready(function () {
+        $('#id_region').change(function () {
+            var regionId = $(this).val();
+            if (regionId) {
+                $.ajax({
+                    url: '{% url "obtener_comunas" %}',
+                    data: {
+                        'region_id': regionId
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#id_comuna').empty();
+                        $.each(data, function (index, comuna) {
+                            $('#id_comuna').append('<option value="' + comuna.id + '">' + comuna.nombre + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#id_comuna').empty();
+            }
+        });
+
+        // Cargar las comunas al cargar la página si la región ya está seleccionada
+        var regionId = $('#id_region').val();
+        if (regionId) {
+            $.ajax({
+                url: '{% url "obtener_comunas" %}',
+                data: {
+                    'region_id': regionId
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $('#id_comuna').empty();
+                    $.each(data, function (index, comuna) {
+                        $('#id_comuna').append('<option value="' + comuna.id + '">' + comuna.nombre + '</option>');
+                    });
+                }
+            });
+        }
+    });
+</script> 
+
 {% endblock %}

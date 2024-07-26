@@ -1,0 +1,133 @@
+/* Estilo global para el cuerpo y html */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal que incluye el navbar, el contenido principal y el footer */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilo del navbar */
+.navbar {
+    height: 60px; /* Ajusta según la altura real del navbar */
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Estilo del contenido principal */
+.main-content {
+    flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Estilo para centrar el formulario */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Estilo del contenedor del formulario */
+.form-container {
+    width: 100%;
+    max-width: 500px; /* Ancho máximo del formulario */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Estilo opcional para las etiquetas */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold; /* Negrita para las etiquetas */
+}
+
+/* Estilo para mensajes de error */
+.error {
+    color: red;
+}
+
+/* Estilo para los campos del formulario */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 12px; /* Aumenta el padding para campos más grandes */
+    margin-bottom: 15px; /* Aumenta el margen para mayor separación */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px; /* Aumenta el tamaño de la fuente para mayor legibilidad */
+}
+
+/* Estilo para el botón */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px; /* Aumenta el padding del botón */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px; /* Aumenta el tamaño de la fuente del botón */
+    display: block;
+    margin: 20px auto 0; /* Centra el botón horizontalmente */
+}
+
+button:hover {
+    background-color: #45a049; /* Cambia el color al pasar el ratón */
+}
+
+/* Estilo del footer */
+.footer {
+    height: 60px; /* Ajusta según la altura real del footer */
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Estilos opcionales */
+.profile-container {
+    width: 100%;
+    max-width: 600px; /* Ancho máximo del perfil */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 5px;
+}

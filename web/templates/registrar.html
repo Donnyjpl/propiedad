@@ -1,14 +1,177 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Registro de usuario
+Formulario de Usuario
 {% endblock %}
 
 {% block content %}
-    <h2>Registro de usuario</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Registrar</button>
-    </form>
+
+<!-- Estilos CSS -->
+<style>
+    /* Estilos para centrar el formulario */
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Ajusta la altura según tu necesidad */
+    }
+
+    .form-container {
+        width: 400px; /* Ancho del formulario */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilos opcionales para los campos */
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .error {
+        color: red;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h2>Registro de Usuario</h2>
+
+        <form method="post" id="formulario-usuario">
+            {% csrf_token %}
+
+            {{ form.non_field_errors }}
+
+            <div>
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+
+            <div>
+                {{ form.rut.label_tag }}
+                {{ form.rut }}
+                {{ form.rut.errors }}
+            </div>
+
+            <div>
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+
+            <div>
+                {{ form.telefono_personal.label_tag }}
+                {{ form.telefono_personal }}
+                {{ form.telefono_personal.errors }}
+            </div>
+
+            <div>
+                {{ form.region.label_tag }}
+                {{ form.region }}
+                {{ form.region.errors }}
+            </div>
+
+            <div>
+                {{ form.comuna.label_tag }}
+                {{ form.comuna }}
+                {{ form.comuna.errors }}
+            </div>
+
+            <div>
+                {{ form.calle.label_tag }}
+                {{ form.calle }}
+                {{ form.calle.errors }}
+            </div>
+            
+            <div>
+                {{ form.numero.label_tag }}
+                {{ form.numero }}
+                {{ form.numero.errors }}
+            </div>
+            
+            <div>
+                {{ form.punto_referencia.label_tag }}
+                {{ form.punto_referencia }}
+                {{ form.punto_referencia.errors }}
+            </div>
+
+            <div>
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+            </div>
+
+            <div>
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                {{ form.password2.errors }}
+            </div>
+
+            <button type="submit">Guardar Usuario</button>
+        </form>
+    </div>
+</div>
+
+ <!-- Script JavaScript para manejar la carga dinámica de comunas -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+<script>
+    $(document).ready(function () {
+        $('#id_region').change(function () {
+            var regionId = $(this).val();
+            if (regionId) {
+                $.ajax({
+                    url: '{% url "obtener_comunas" %}',
+                    data: {
+                        'region_id': regionId
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#id_comuna').empty();
+                        $.each(data, function (index, comuna) {
+                            $('#id_comuna').append('<option value="' + comuna.id + '">' + comuna.nombre + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#id_comuna').empty();
+            }
+        });
+    });
+</script>
+ 
 {% endblock %}

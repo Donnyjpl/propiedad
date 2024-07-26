@@ -1,5 +1,6 @@
 from django import forms
 from .models import Usuario, Region, Comuna, Direccion
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class UsuarioUpdateForm(forms.ModelForm):
@@ -53,7 +54,6 @@ class UsuarioUpdateForm(forms.ModelForm):
             usuario.save()
 
         return usuario
-
 
 class UsuarioForm(forms.ModelForm):
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
@@ -118,7 +118,7 @@ class UsuarioForm(forms.ModelForm):
                     comuna_id=comuna_id,
                     defaults={
                         'calle': 'Sin especificar',
-                        'numero': 'Sin especificar',
+                        'numero': '10',
                         'punto_referencia': 'Sin especificar'
                     }
                 )
@@ -126,8 +126,13 @@ class UsuarioForm(forms.ModelForm):
                 user.save()
 
         return user
-
     
-class LoginForm(forms.Form):
-    username = forms.CharField(label='Nombre de usuario')
-    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Usuario'})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Contraseña'})
+    )

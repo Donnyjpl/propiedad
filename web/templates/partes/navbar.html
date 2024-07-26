@@ -1,8 +1,9 @@
 <!-- Navbar -->
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="#" width="30" height="40" class="d-inline-block align-top" alt="">
+            <img src="{% static 'img/logo.png' %}" width="30" height="40" class="d-inline-block align-top" alt="Logo">
             <!-- Asegúrate de proporcionar una URL válida para tu logo -->
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -22,10 +23,12 @@
                 </li>
                 {% if user.is_authenticated %}
                 <!-- Mostrar botón de cerrar sesión si el usuario está autenticado -->
-                <form action="{% url 'logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="nav-link btn btn-link">Cerrar sesión</button>
-                </form>
+                <li class="nav-item text-center">
+                    <form action="{% url 'logout' %}" method="post" aria-label="Cerrar sesión">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link nav-link">Cerrar sesión</button>
+                    </form>
+                </li>
                 {% else %}
                 <!-- Mostrar enlace de iniciar sesión si el usuario no está autenticado -->
                 <li class="nav-item">
@@ -36,3 +39,10 @@
         </div>
     </div>
 </nav>
+
+<style>
+    .nav-item.text-center {
+        display: flex;
+        justify-content: center;
+    }
+</style>

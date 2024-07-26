@@ -1,6 +1,6 @@
 
 from django.urls import path,include
-from .views import index,registro,perfil,modificar_perfil,get_comunas,formulario_view
+from .views import index,registro,perfil,modificar_perfil,obtener_comunas,formulario_view
 
 urlpatterns = [
    
@@ -9,7 +9,7 @@ urlpatterns = [
     path('perfil/', perfil, name='perfil'),
     path('perfil/modificar/', modificar_perfil, name='modificar_perfil'),
     path('formulario/', formulario_view, name='formulario'),
-    path('get_comunas/', get_comunas, name='get_comunas'),
+    path('obtener_comunas/', obtener_comunas, name='obtener_comunas'),
     path('accounts/', include('django.contrib.auth.urls')),
    
     

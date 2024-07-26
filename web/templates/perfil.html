@@ -1,25 +1,33 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Perfil de usuario
+Perfil de usuario
 {% endblock %}
 
 {% block content %}
-<h2>Perfil de {{ usuario.username }}</h2>
-<p>Nombre: {{ usuario.first_name }} {{ usuario.last_name }}</p>
-<p>Email: {{ usuario.email }}</p>
-<p>RUT: {{ usuario.rut }}</p>
-<p>Teléfono personal: {{ usuario.telefono_personal }}</p>
-<p>Tipo de usuario: {{ usuario.get_tipo_usuario_display }}</p>
+<!-- <style>
+   
+    }
+</style> -->
 
-<!-- Mostrar la dirección del usuario -->
-{% if usuario.direccion %}
-    <h3>Dirección</h3>
-    <p>Calle: {{ usuario.direccion.calle }}</p>
-    <p>Número: {{ usuario.direccion.numero }}</p>
-    <p>Punto de referencia: {{ usuario.direccion.punto_referencia }}</p>
-    <p>Comuna: {{ usuario.direccion.comuna }}</p>
-{% else %}
-    <p>Aún no se ha registrado una dirección.</p>
-{% endif %}
+<div class="profile-container">
+    <h2>Perfil de {{ usuario.username }}</h2>
+    <p>Nombre: {{ usuario.first_name }} {{ usuario.last_name }}</p>
+    <p>Email: {{ usuario.email }}</p>
+    <p>RUT: {{ usuario.rut }}</p>
+    <p>Teléfono personal: {{ usuario.telefono_personal }}</p>
+    <p>Tipo de usuario: {{ usuario.get_tipo_usuario_display }}</p>
+
+    <!-- Mostrar la dirección del usuario -->
+    {% if usuario.direccion %}
+        <h3>Dirección</h3>
+        <p>Calle: {{ usuario.direccion.calle }}</p>
+        <p>Número: {{ usuario.direccion.numero }}</p>
+        <p>Punto de referencia: {{ usuario.direccion.punto_referencia }}</p>
+        <p>Comuna: {{ usuario.direccion.comuna.nombre }}</p>
+    {% else %}
+        <p>Aún no se ha registrado una dirección.</p>
+    {% endif %}
+</div>
 {% endblock %}
+

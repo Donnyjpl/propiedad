@@ -9,7 +9,7 @@ class Usuario(AbstractUser):
         ('arrendador', 'Arrendador'),
     ]
     tipo_usuario = models.CharField(max_length=12, choices=tipo_usuario_choices, default='arrendatario')
-    direccion = models.ForeignKey('Direccion', on_delete=models.SET_NULL, null=True)
+    direccion = models.ForeignKey('Direccion',on_delete=models.CASCADE,  null=True)
     
      # Define related_name único para los campos ManyToManyField
     groups = models.ManyToManyField(

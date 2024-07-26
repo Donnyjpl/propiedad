@@ -1,58 +1,57 @@
-<!-- form.html -->
-{% extends 'base.html' %}
-
-{% block title %}
-    Modificar usuario
-{% endblock %}
-
-{% block content %}
-<form method="post">
-    {% csrf_token %}
-    <div class="form-group">
-        <label for="region">Región</label>
-        <select id="region" name="region">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- Script JavaScript para manejar Ajax -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form id="formulario-direccion">
+        <!-- Campo para seleccionar la región -->
+        <select id="id_region">
+            <option value="">Selecciona una región</option>
             {% for region in regions %}
                 <option value="{{ region.id }}">{{ region.nombre }}</option>
             {% endfor %}
         </select>
-    </div>
-
-    <div class="form-group">
-        <label for="comuna">Comuna</label>
-        <select id="comuna" name="comuna">
-            <!-- Comunas se llenarán dinámicamente aquí -->
+    
+        <!-- Campo para mostrar las comunas -->
+        <select id="id_comuna" name="comuna">
+            <option value="">Selecciona una comuna</option>
         </select>
-    </div>
-
-    <button type="submit">Enviar</button>
-</form>
-
-<script>
-    document.getElementById('region').addEventListener('change', function() {
-        var regionId = this.value;
-        var comunaSelect = document.getElementById('comuna');
-
-        // Limpia el menú de comunas
-        comunaSelect.innerHTML = '';
-
-        fetch(`/get_comunas/?region_id=${regionId}`)
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(comuna => {
-                    var option = document.createElement('option');
-                    option.value = comuna.id;
-                    option.text = comuna.nombre;
-                    comunaSelect.add(option);
+    
+        <!-- Otros campos del formulario de dirección -->
+        <!-- ... -->
+    
+        <!-- Botón de enviar -->
+        <button type="submit">Guardar dirección</button>
+    </form>
+    
+    <script>
+    $(document).ready(function() {
+        $('#id_region').change(function() {
+            var regionId = $(this).val();
+            if (regionId) {
+                $.ajax({
+                    url: '{% url "obtener_comunas" %}',
+                    data: {
+                        'region_id': regionId
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#id_comuna').empty();
+                        $.each(data, function(index, comuna) {
+                            $('#id_comuna').append('<option value="' + comuna.id + '">' + comuna.nombre + '</option>');
+                        });
+                    }
                 });
-            });
+            } else {
+                $('#id_comuna').empty();
+            }
+        });
     });
-
-    // Opcional: carga comunas si ya hay una región seleccionada al cargar la página
-    document.addEventListener('DOMContentLoaded', function() {
-        var regionId = document.getElementById('region').value;
-        if (regionId) {
-            document.getElementById('region').dispatchEvent(new Event('change'));
-        }
-    });
-</script>
-{% endblock %}
+    </script>
+</body>
+</html>
