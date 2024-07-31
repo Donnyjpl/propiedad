@@ -192,19 +192,14 @@ class PropiedadForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.user = user  # Guardamos el usuario
 
-        # Cargar las regiones disponibles en el formulario
-        self.fields['region'].queryset = Region.objects.all()
-
-        # Si hay datos posteados (POST request), filtrar las comunas basadas en la región seleccionada
+        # Filtrar las comunas basadas en la región seleccionada si hay datos en la solicitud POST
         if 'region' in self.data:
             try:
                 region_id = int(self.data.get('region'))
                 self.fields['comuna'].queryset = Comuna.objects.filter(region_id=region_id).order_by('nombre')
             except (ValueError, TypeError):
-                pass  # Si hay algún error al intentar obtener el ID de la región, no se filtra nada
-        
-        # Si ya existe una instancia de usuario (estamos en una actualización), cargar las opciones seleccionadas
-        elif self.instance.pk and self.instance.direccion and self.instance.direccion.comuna:
+                self.fields['comuna'].queryset = Comuna.objects.none()
+        elif self.instance and self.instance.pk and self.instance.direccion and self.instance.direccion.comuna:
             self.fields['region'].initial = self.instance.direccion.comuna.region
             self.fields['comuna'].queryset = Comuna.objects.filter(region=self.instance.direccion.comuna.region).order_by('nombre')
 
@@ -217,27 +212,31 @@ class PropiedadForm(forms.ModelForm):
         if commit:
             propiedad.save()
 
-            # Crear o obtener la dirección
-            comuna = self.cleaned_data['comuna']
-            direccion, created = Direccion.objects.get_or_create(
-                comuna=comuna,
+            # Crear una nueva dirección
+            direccion = Direccion.objects.create(
+                comuna=self.cleaned_data['comuna'],
                 calle=self.cleaned_data['direccion_calle'],
                 numero=self.cleaned_data['direccion_numero'],
                 punto_referencia=self.cleaned_data['direccion_punto_referencia']
             )
+
+            # Asociar la nueva dirección a la propiedad
             propiedad.direccion = direccion
             propiedad.save()
 
             # Guardar imágenes si se han proporcionado
-            for form in self.imagen_formset:
-                if form.is_valid() and form.cleaned_data:
-                    imagen = form.cleaned_data['imagen']
-                    descripcion = form.cleaned_data.get('descripcion', '')
-                    ImagenPropiedad.objects.create(
-                        propiedad=propiedad,
-                        imagen=imagen,
-                        descripcion=descripcion
-                    )
+            imagen_formset = self.imagen_formset
+            if imagen_formset:
+                for form in imagen_formset:
+                    if form.is_valid() and form.cleaned_data:
+                        imagen = form.cleaned_data.get('imagen')
+                        descripcion = form.cleaned_data.get('descripcion', '')
+                        if imagen:
+                            ImagenPropiedad.objects.create(
+                                propiedad=propiedad,
+                                imagen=imagen,
+                                descripcion=descripcion
+                            )
         return propiedad
     
     

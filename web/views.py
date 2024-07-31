@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import UsuarioUpdateForm,UsuarioForm,LoginForm,PropiedadForm,ImagenForm
 from .forms import ImagenFormSet,PropiedadUpdateForm, ImagenUpdateFormSet,PropiedadFilterForm
-from .models import Usuario,Comuna,Region,Propiedad,ImagenPropiedad
+from .models import Usuario,Comuna,Region,Propiedad,ImagenPropiedad,Direccion
 from django.http import JsonResponse
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
@@ -79,7 +79,6 @@ def obtener_comunas(request):
     print("Comunas:", list(comunas))
     return JsonResponse(list(comunas), safe=False)
 
-
 @login_required
 def agregar_propiedad(request):
     if request.method == 'POST':
@@ -97,16 +96,27 @@ def agregar_propiedad(request):
             propiedad.save()
             print("Propiedad saved:", propiedad)
 
-             # Guardar las imágenes
+            # Guardar la dirección
+            direccion = Direccion.objects.create(
+                comuna=form.cleaned_data['comuna'],
+                calle=form.cleaned_data['direccion_calle'],
+                numero=form.cleaned_data['direccion_numero'],
+                punto_referencia=form.cleaned_data.get('direccion_punto_referencia', '')
+            )
+            propiedad.direccion = direccion
+            propiedad.save()
+
+            # Guardar las imágenes
             for imagen_form in formset:
                 if imagen_form.is_valid() and imagen_form.cleaned_data:
-                    imagen = imagen_form.cleaned_data['imagen']
+                    imagen = imagen_form.cleaned_data.get('imagen')
                     descripcion = imagen_form.cleaned_data.get('descripcion', '')
-                    ImagenPropiedad.objects.create(
-                        propiedad=propiedad,
-                        imagen=imagen,
-                        descripcion=descripcion
-                    )
+                    if imagen:  # Verificar si la imagen está presente
+                        ImagenPropiedad.objects.create(
+                            propiedad=propiedad,
+                            imagen=imagen,
+                            descripcion=descripcion
+                        )
             
             return redirect('listar')
     else:

@@ -25,8 +25,8 @@
 <p>Número de Baños: {{ propiedad.num_banos }}</p>
 <p>Tipo de Propiedad: {{ propiedad.tipo_propiedad }}</p>
 <p>Precio Mensual: {{ propiedad.precio_mensual }}</p>
-<p>Región: {{ propiedad.region }}</p>
-<p>Comuna: {{ propiedad.comuna }}</p>
+<p>Región: {{ propiedad.direccion.comuna.region }}</p>
+<p>Comuna: {{ propiedad.direccion.comuna }}</p>
 <p>Dirección Calle: {{ propiedad.direccion.calle }}</p>
 <p>Dirección Número: {{ propiedad.direccion.numero }}</p>
 <p>Dirección Punto Referencia: {{ propiedad.direccion.punto_referencia }}</p>
