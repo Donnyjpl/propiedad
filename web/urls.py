@@ -6,7 +6,7 @@ from .views import agregar_propiedad,editar_propiedad,borrar_propiedad,listar_pr
 
 urlpatterns = [
    
-    path("", index, name= 'index'),
+    path("propiedades/", index, name= 'index'),
     path('registro/', registro, name='registro'),
     path('perfil/', perfil, name='perfil'),
     path('perfil/modificar/', modificar_perfil, name='modificar_perfil'),
@@ -18,7 +18,7 @@ urlpatterns = [
     path('propiedades/<int:propiedad_id>/borrar/', borrar_propiedad, name='borrar_propiedad'),
     path('propiedades/usuario/', listar_propiedades_usuario, name='listar'),
     path('propiedades/<int:propiedad_id>/', detalle_propiedad, name='detalle_propiedad'),
-    path('propiedades/', listar_propiedades, name='listar_propiedades'),
+    path("", listar_propiedades, name='listar_propiedades'),
     
     
     path('accounts/', include('django.contrib.auth.urls')),

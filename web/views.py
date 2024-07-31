@@ -216,7 +216,7 @@ def listar_propiedades(request):
     total_propiedades = propiedades.count()
 
     # Paginación
-    paginator = Paginator(propiedades, 9)  # Muestra 9 propiedades por página
+    paginator = Paginator(propiedades, 8)  # Muestra 9 propiedades por página
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

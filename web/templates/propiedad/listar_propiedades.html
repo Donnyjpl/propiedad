@@ -2,9 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-4">
     <h1 class="mb-4">Listado de Propiedades</h1>
-
     <!-- Filtro -->
     <div class="row mb-4">
         <div class="col-md-4">
@@ -32,11 +30,11 @@
 
     <div class="row">
         {% if page_obj.object_list %}
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <h2 class="mb-4">Resultados:</h2>
                 <div class="row">
                     {% for propiedad in page_obj %}
-                        <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="col-md-4 col-lg-3 mb-4">
                             <div class="card shadow-sm">
                                 {% if propiedad.imagenes.first %}
                                     <img src="{{ propiedad.imagenes.first.imagen.url }}" class="card-img-top" alt="{{ propiedad.nombre }}">
@@ -44,7 +42,7 @@
                                     <img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="Imagen no disponible">
                                 {% endif %}
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ propiedad.nombre }}</h5>
+                                    <h5 class="card-title">{{ propiedad.nombre|title }}</h5>
                                     <p class="card-text">
                                         <strong>Tipo:</strong> {{ propiedad.tipo_propiedad.nombre_tipo }}<br>
                                         <strong>Precio:</strong> ${{ propiedad.precio_mensual }}<br>
@@ -95,10 +93,9 @@
                 </nav>
             </div>
         {% else %}
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <p>No se encontraron propiedades.</p>
             </div>
         {% endif %}
     </div>
-</div>
 {% endblock %}

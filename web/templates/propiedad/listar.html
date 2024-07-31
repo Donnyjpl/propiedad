@@ -13,12 +13,12 @@
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card shadow-sm">
                     {% if propiedad.imagenes.first %}
-                        <img src="{{ propiedad.imagenes.first.imagen.url }}" class="card-img-top" alt="{{ propiedad.nombre }}">
+                        <img src="{{ propiedad.imagenes.first.imagen.url }}" class="card-img-top" width="30%" alt="{{ propiedad.nombre }}">
                     {% else %}
                         <img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="Imagen no disponible">
                     {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title">{{ propiedad.nombre }}</h5>
+                        <h5 class="card-title">{{ propiedad.nombre|title }}</h5>
                         <p class="card-text">
                             <strong>Tipo:</strong> {{ propiedad.tipo_propiedad.nombre_tipo }}<br>
                             <strong>Precio:</strong> ${{ propiedad.precio_mensual }}<br>
