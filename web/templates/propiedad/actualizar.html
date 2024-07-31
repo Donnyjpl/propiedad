@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Actualizar Propiedad: {{ propiedad.nombre }}</h1>
+
+<form method="POST" enctype="multipart/form-data" action="{% url 'editar_propiedad' propiedad.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <h2>Imágenes</h2>
+    {{ form.imagen_formset.management_form }}
+    {% for form in form.imagen_formset %}
+        <div>
+            {{ form.as_p }}
+        </div>
+    {% endfor %}
+
+    <button type="submit">Actualizar</button>
+</form>
+
+<a href="{% url 'detalle_propiedad' propiedad.id %}">Cancelar</a>
+
+<!-- Script JavaScript para manejar la carga dinámica de comunas -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Función para cargar comunas basado en la región seleccionada
+        function loadComunas(regionId) {
+            $.ajax({
+                url: '{% url "obtener_comunas" %}',
+                data: {
+                    'region_id': regionId
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $('#id_comuna').empty();
+                    $.each(data, function (index, comuna) {
+                        $('#id_comuna').append('<option value="' + comuna.id + '">' + comuna.nombre + '</option>');
+                    });
+                }
+            });
+        }
+
+        // Manejo del cambio de la región
+        $('#id_region').change(function () {
+            var regionId = $(this).val();
+            loadComunas(regionId);
+        });
+
+        // Cargar las comunas al cargar la página si la región ya está seleccionada
+        var regionId = $('#id_region').val();
+        if (regionId) {
+            loadComunas(regionId);
+        }
+    });
+</script>
+{% endblock %}

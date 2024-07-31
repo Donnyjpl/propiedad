@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<!-- Asegúrate de incluir esta línea -->
+
+{% block content %}
+<title>{{ propiedad.nombre }}</title>
+<style>
+    .image-gallery img {
+        width: 200px;
+        /* Ajusta el tamaño de las imágenes según lo necesites */
+        height: auto;
+        margin: 5px;
+    }
+</style>
+</head>
+
+
+<h1>{{ propiedad.nombre }}</h1>
+<p>{{ propiedad.descripcion }}</p>
+<p>Metros Construidos: {{ propiedad.m2_construidos }}</p>
+<p>Metros de Terreno: {{ propiedad.m2_terreno }}</p>
+<p>Número de Estacionamientos: {{ propiedad.num_estacionamientos }}</p>
+<p>Número de Habitaciones: {{ propiedad.num_habitaciones }}</p>
+<p>Número de Baños: {{ propiedad.num_banos }}</p>
+<p>Tipo de Propiedad: {{ propiedad.tipo_propiedad }}</p>
+<p>Precio Mensual: {{ propiedad.precio_mensual }}</p>
+<p>Región: {{ propiedad.region }}</p>
+<p>Comuna: {{ propiedad.comuna }}</p>
+<p>Dirección Calle: {{ propiedad.direccion.calle }}</p>
+<p>Dirección Número: {{ propiedad.direccion.numero }}</p>
+<p>Dirección Punto Referencia: {{ propiedad.direccion.punto_referencia }}</p>
+
+<h2>Galería de Imágenes</h2>
+<div class="image-gallery">
+    {% for imagen in imagenes %}
+    <img src="{{ imagen.imagen.url }}" alt="{{ imagen.descripcion }}">
+    {% empty %}
+    <p>No hay imágenes disponibles.</p>
+    {% endfor %}
+</div>
+
+{% if user == propiedad.arrendador %}
+    <a href="{% url 'editar_propiedad' propiedad.id %}">Actualizar Propiedad</a>
+    <a href="{% url 'borrar_propiedad' propiedad.id %}">Eliminar Propiedad</a>
+{% endif %}
+
+<a href="{% url 'listar_propiedades' %}">Volver</a>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=" col-4 offset-4">
+<h2>Agregar Nueva Propiedad</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <!-- Renderiza el formset management form -->
+    {{ formset.management_form }}
+
+    <!-- Renderiza los formularios del formset -->
+    {% for form in formset %}
+        <div class="formset-row">
+            {{ form.as_p }}
+        </div>
+    {% endfor %}
+
+    <button type="submit">Guardar</button>
+</form>
+</div>
+<!-- Script JavaScript para manejar la carga dinámica de comunas -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#id_region').change(function () {
+            var regionId = $(this).val();
+            console.log("Region ID selected:", regionId); // Debug
+            if (regionId) {
+                $.ajax({
+                    url: '{% url "obtener_comunas" %}', // Asegúrate de que esta línea sea correcta
+                    data: {
+                        'region_id': regionId
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log("Comunas data received:", data); // Debug
+                        $('#id_comuna').empty();
+                        $.each(data, function (index, comuna) {
+                            $('#id_comuna').append('<option value="' + comuna.id +
+                                '">' + comuna.nombre + '</option>');
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Error en la solicitud AJAX:", error); // Debug
+                    }
+                });
+            } else {
+                $('#id_comuna').empty();
+            }
+        });
+    });
+</script>
+
+
+{% endblock %}
