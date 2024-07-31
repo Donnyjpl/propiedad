@@ -171,23 +171,26 @@ def listar_propiedades_usuario(request):
     usuario = request.user
     
     # Filtrar las propiedades del usuario logeado
-    propiedades_list = Propiedad.objects.filter(arrendador=usuario)
+    propiedades = Propiedad.objects.filter(arrendador=usuario)
     
     # Configurar el paginador
-    paginator = Paginator(propiedades_list, 10)  # Mostrar 10 propiedades por página
-    
+    paginator = Paginator(propiedades, 9)  # Mostrar 10 propiedades por página
+    total_propiedades = propiedades.count()
     # Obtener la página actual
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    
+    context = {
+        
+        'page_obj': page_obj,
+        'total_propiedades': total_propiedades  # Agrega el conteo al contexto
+    }
     # Pasar el objeto de la página al contexto
-    return render(request, 'propiedad/listar.html', {'page_obj': page_obj})
+    return render(request, 'propiedad/listar.html', context)
 
 def detalle_propiedad(request, propiedad_id):
     propiedad = get_object_or_404(Propiedad, pk=propiedad_id)
     imagenes = ImagenPropiedad.objects.filter(propiedad=propiedad)
     return render(request, 'propiedad/detalle_propiedad.html', {'propiedad': propiedad, 'imagenes': imagenes})
-
 
 def listar_propiedades(request):
     form = PropiedadFilterForm(request.GET or None)
@@ -209,17 +212,17 @@ def listar_propiedades(request):
         if form.cleaned_data['m2_terreno_max']:
             propiedades = propiedades.filter(m2_terreno__lte=form.cleaned_data['m2_terreno_max'])
 
+    # Contar el número total de propiedades después de aplicar los filtros
+    total_propiedades = propiedades.count()
+
     # Paginación
-    paginator = Paginator(propiedades, 10)  # Muestra 10 propiedades por página
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    
-    
+    paginator = Paginator(propiedades, 9)  # Muestra 9 propiedades por página
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     context = {
         'form': form,
-        'page_obj': page_obj
+        'page_obj': page_obj,
+        'total_propiedades': total_propiedades  # Agrega el conteo al contexto
     }
     return render(request, 'propiedad/listar_propiedades.html', context)

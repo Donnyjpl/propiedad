@@ -1,49 +1,98 @@
 {% extends 'base.html' %}
 
 {% load static %}
-<!-- Asegúrate de incluir esta línea -->
 
 {% block content %}
 <title>{{ propiedad.nombre }}</title>
+
+<!-- Incluye los estilos en línea o en un archivo CSS separado -->
 <style>
-    .image-gallery img {
-        width: 200px;
-        /* Ajusta el tamaño de las imágenes según lo necesites */
+    .card-img-top {
+        width: 100%;
+        height: auto; /* Mantiene la altura proporcional basada en el ancho */
+        object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse */
+    }
+    .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* Espacio entre las imágenes */
+    }
+    .image-item {
+        flex: 1 1 calc(33.333% - 10px); /* Tres imágenes por fila, ajusta según el diseño */
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+    .image-item img {
+        width: 100%;
         height: auto;
-        margin: 5px;
+        max-height: 200px;
+        object-fit: cover;
+    }
+    .image-description {
+        text-align: center;
+        margin-top: 5px;
+    }
+    .btn-custom {
+        margin-right: 10px;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
     }
 </style>
-</head>
 
+<div class="container mt-4">
+    <div class="card mb-4">
+        <!-- Imagen principal -->
+        {% if propiedad.imagenes.first %}
+            <img src="{{ propiedad.imagenes.first.imagen.url }}" class="card-img-top" alt="{{ propiedad.nombre }}">
+        {% else %}
+            <img src="{% static 'default.jpg' %}" class="card-img-top" alt="Imagen no disponible">
+        {% endif %}
 
-<h1>{{ propiedad.nombre }}</h1>
-<p>{{ propiedad.descripcion }}</p>
-<p>Metros Construidos: {{ propiedad.m2_construidos }}</p>
-<p>Metros de Terreno: {{ propiedad.m2_terreno }}</p>
-<p>Número de Estacionamientos: {{ propiedad.num_estacionamientos }}</p>
-<p>Número de Habitaciones: {{ propiedad.num_habitaciones }}</p>
-<p>Número de Baños: {{ propiedad.num_banos }}</p>
-<p>Tipo de Propiedad: {{ propiedad.tipo_propiedad }}</p>
-<p>Precio Mensual: {{ propiedad.precio_mensual }}</p>
-<p>Región: {{ propiedad.direccion.comuna.region }}</p>
-<p>Comuna: {{ propiedad.direccion.comuna }}</p>
-<p>Dirección Calle: {{ propiedad.direccion.calle }}</p>
-<p>Dirección Número: {{ propiedad.direccion.numero }}</p>
-<p>Dirección Punto Referencia: {{ propiedad.direccion.punto_referencia }}</p>
+        <div class="card-body">
+            <h5 class="card-title">{{ propiedad.nombre|title }}</h5>
+            <p><strong>Descripción:</strong> {{ propiedad.descripcion }}</p>
+            <p><strong>Metros Construidos:</strong> {{ propiedad.m2_construidos }}</p>
+            <p><strong>Metros de Terreno:</strong> {{ propiedad.m2_terreno }}</p>
+            <p><strong>Número de Estacionamientos:</strong> {{ propiedad.num_estacionamientos }}</p>
+            <p><strong>Número de Habitaciones:</strong> {{ propiedad.num_habitaciones }}</p>
+            <p><strong>Número de Baños:</strong> {{ propiedad.num_banos }}</p>
+            <p><strong>Tipo de Propiedad:</strong> {{ propiedad.tipo_propiedad.nombre_tipo }}</p>
+            <p><strong>Precio Mensual:</strong> ${{ propiedad.precio_mensual }}</p>
+            <p><strong>Región:</strong> {{ propiedad.direccion.comuna.region }}</p>
+            <p><strong>Comuna:</strong> {{ propiedad.direccion.comuna }}</p>
+            <p><strong>Dirección Calle:</strong> {{ propiedad.direccion.calle }}</p>
+            <p><strong>Dirección Número:</strong> {{ propiedad.direccion.numero }}</p>
+            <p><strong>Dirección Punto Referencia:</strong> {{ propiedad.direccion.punto_referencia }}</p>
 
-<h2>Galería de Imágenes</h2>
-<div class="image-gallery">
-    {% for imagen in imagenes %}
-    <img src="{{ imagen.imagen.url }}" alt="{{ imagen.descripcion }}">
-    {% empty %}
-    <p>No hay imágenes disponibles.</p>
-    {% endfor %}
+            <!-- Galería de Imágenes -->
+            <h6 class="mt-4">Galería de Imágenes</h6>
+            <div class="image-gallery">
+                {% for imagen in propiedad.imagenes.all %}
+                    <div class="image-item">
+                        <img src="{{ imagen.imagen.url }}" alt="{{ imagen.descripcion }}">
+                        <div class="image-description">{{ imagen.descripcion }}</div>
+                    </div>
+                {% empty %}
+                    <p>No hay imágenes disponibles.</p>
+                {% endfor %}
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="mt-3">
+                {% if user == propiedad.arrendador %}
+                    <a href="{% url 'editar_propiedad' propiedad.id %}" class="btn btn-warning btn-custom">Actualizar Propiedad</a>
+                    <a href="{% url 'borrar_propiedad' propiedad.id %}" class="btn btn-danger btn-custom">Eliminar Propiedad</a>
+                {% endif %}
+                <a href="{% url 'listar_propiedades' %}" class="btn btn-secondary">Volver</a>
+            </div>
+        </div>
+    </div>
 </div>
 
-{% if user == propiedad.arrendador %}
-    <a href="{% url 'editar_propiedad' propiedad.id %}">Actualizar Propiedad</a>
-    <a href="{% url 'borrar_propiedad' propiedad.id %}">Eliminar Propiedad</a>
-{% endif %}
-
-<a href="{% url 'listar_propiedades' %}">Volver</a>
 {% endblock %}

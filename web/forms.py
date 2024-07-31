@@ -336,7 +336,7 @@ class PropiedadUpdateForm(forms.ModelForm):
 
 class PropiedadFilterForm(forms.Form):
     region = forms.ModelChoiceField(queryset=Region.objects.all(), required=False, empty_label="Seleccionar región")
-    comuna = forms.ModelChoiceField(queryset=Comuna.objects.none(), required=False, empty_label="Seleccionar comuna")
+    comuna = forms.ModelChoiceField(queryset=Comuna.objects.all().order_by('nombre'), required=False, empty_label="Seleccionar comuna")
     tipo_propiedad = forms.ModelChoiceField(queryset=TipoPropiedad.objects.all(), required=False, empty_label="Seleccionar tipo de propiedad")
     precio_min = forms.DecimalField(required=False, decimal_places=2, max_digits=10)
     precio_max = forms.DecimalField(required=False, decimal_places=2, max_digits=10)
