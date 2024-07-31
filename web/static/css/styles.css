@@ -165,3 +165,21 @@ p {
     background-color: #e9ecef;
     border-color: #ddd;
 }
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-img-top {
+    max-height: 200px; /* Ajusta la altura de la imagen según sea necesario */
+    object-fit: cover;
+}
+
+.card-body {
+    flex: 1; /* Hace que el cuerpo de la tarjeta ocupe el espacio restante */
+}
+
+.btn-primary {
+    margin-top: auto; /* Empuja el botón hacia abajo */
+}

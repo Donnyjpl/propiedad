@@ -1,57 +1,70 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Actualizar Propiedad: {{ propiedad.nombre }}</h1>
 
-<form method="POST" enctype="multipart/form-data" action="{% url 'editar_propiedad' propiedad.id %}">
-    {% csrf_token %}
-    {{ form.as_p }}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2 mt-4 mb-4">
+            <h3 class="text-center cafe_cuerpo">Actualizar Propiedad</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                
 
-    <h2>Imágenes</h2>
-    {{ form.imagen_formset.management_form }}
-    {% for form in form.imagen_formset %}
-        <div>
-            {{ form.as_p }}
+                <div class="mb-3">
+                    <h4 class="text-center">Imágenes</h4>
+                    {{ formset.management_form }}
+                    <div id="imagen_formset">
+                        {% for form in formset %}
+                            <div class="mb-3">
+                                {{ form.as_p }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Actualizar Propiedad</button>
+                </div>
+            </form>
         </div>
-    {% endfor %}
+    </div>
+</div>
 
-    <button type="submit">Actualizar</button>
-</form>
-
-<a href="{% url 'detalle_propiedad' propiedad.id %}">Cancelar</a>
-
-<!-- Script JavaScript para manejar la carga dinámica de comunas -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        // Función para cargar comunas basado en la región seleccionada
-        function loadComunas(regionId) {
-            $.ajax({
-                url: '{% url "obtener_comunas" %}',
-                data: {
-                    'region_id': regionId
-                },
-                dataType: 'json',
-                success: function (data) {
-                    $('#id_comuna').empty();
-                    $.each(data, function (index, comuna) {
-                        $('#id_comuna').append('<option value="' + comuna.id + '">' + comuna.nombre + '</option>');
+    document.addEventListener('DOMContentLoaded', function () {
+        const regionSelect = document.querySelector('select[name="region"]');
+        const comunaSelect = document.querySelector('select[name="comuna"]');
+    
+        regionSelect.addEventListener('change', function () {
+            const regionId = this.value;
+    
+            // Verificar que la región no esté vacía
+            if (!regionId) {
+                comunaSelect.innerHTML = '<option value="">Seleccionar comuna</option>';
+                return;
+            }
+    
+            fetch(`/obtener_comunas/?region=${regionId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Vaciar el select de comunas
+                    comunaSelect.innerHTML = '<option value="">Seleccionar comuna</option>';
+    
+                    // Llenar el select con las comunas obtenidas
+                    data.comunas.forEach(comuna => {
+                        const option = document.createElement('option');
+                        option.value = comuna.id;
+                        option.textContent = comuna.nombre;
+                        comunaSelect.appendChild(option);
                     });
-                }
-            });
-        }
-
-        // Manejo del cambio de la región
-        $('#id_region').change(function () {
-            var regionId = $(this).val();
-            loadComunas(regionId);
+                })
+                .catch(error => {
+                    console.error('Error al obtener comunas:', error);
+                });
         });
-
-        // Cargar las comunas al cargar la página si la región ya está seleccionada
-        var regionId = $('#id_region').val();
-        if (regionId) {
-            loadComunas(regionId);
-        }
     });
-</script>
+    </script>
+    
+
 {% endblock %}

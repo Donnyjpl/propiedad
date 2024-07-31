@@ -31,15 +31,12 @@ class Usuario(AbstractUser):
     def __str__(self):
         return f"{self.username} {self.last_name}"
     
-    
-    
 class TipoPropiedad(models.Model):
     nombre_tipo = models.CharField( max_length=50)
     def __str__(self):
         return self.nombre_tipo
         
 class Propiedad(models.Model):
-    
     nombre = models.CharField(max_length=255)
     descripcion = models.TextField()
     m2_construidos = models.DecimalField(max_digits=10, decimal_places=2)
@@ -65,8 +62,6 @@ class ImagenPropiedad(models.Model):
     def __str__(self):
         return f"Imagen de '{self.propiedad.nombre}'"    
 
-
-
 class SolicitudArriendo(models.Model):
     ESTADO_CHOICES = [
         ('pendiente', 'Pendiente'),
@@ -81,18 +76,16 @@ class SolicitudArriendo(models.Model):
 
     def __str__(self):
         return f"Solicitud de arriendo de {self.usuario} para {self.propiedad}"
+    
 class Region(models.Model):
-
     nombre = models.CharField(max_length=100, unique=True)
     # Otros campos relevantes para la región
-
     def __str__(self):
         return self.nombre
     
 class Comuna(models.Model):
     nombre = models.CharField(max_length=100)
     region = models.ForeignKey(Region, on_delete=models.CASCADE)
-
     def __str__(self):
         return f"{self.nombre}"   
      
@@ -101,7 +94,6 @@ class Direccion(models.Model):
     numero = models.CharField(max_length=10)
     punto_referencia = models.CharField(max_length=255, blank=True, null=True)
     comuna = models.ForeignKey('Comuna', on_delete=models.SET_NULL, null=True)
-
     def __str__(self):
         if self.punto_referencia:
             return f"{self.calle} {self.numero}, {self.punto_referencia}, {self.comuna}"

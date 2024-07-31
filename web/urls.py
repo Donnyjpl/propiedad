@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path,include
 from .views import index,registro,perfil,modificar_perfil,obtener_comunas,formulario_view,listar_propiedades_usuario
-from .views import agregar_propiedad,editar_propiedad,borrar_propiedad,listar_propiedades,detalle_propiedad
+from .views import agregar_propiedad,borrar_propiedad,listar_propiedades,detalle_propiedad, PropiedadUpdateView
 
 urlpatterns = [
    
@@ -14,7 +14,7 @@ urlpatterns = [
     path('obtener_comunas/', obtener_comunas, name='obtener_comunas'),
     
     path('propiedades/agregar/', agregar_propiedad, name='agregar_propiedad'),
-    path('propiedades/<int:propiedad_id>/editar/', editar_propiedad, name='editar_propiedad'),
+    path('propiedades/<int:pk>/editar/', PropiedadUpdateView.as_view(), name='editar_propiedad'),
     path('propiedades/<int:propiedad_id>/borrar/', borrar_propiedad, name='borrar_propiedad'),
     path('propiedades/usuario/', listar_propiedades_usuario, name='listar'),
     path('propiedades/<int:propiedad_id>/', detalle_propiedad, name='detalle_propiedad'),

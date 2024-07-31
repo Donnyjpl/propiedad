@@ -200,8 +200,13 @@ class PropiedadForm(forms.ModelForm):
             except (ValueError, TypeError):
                 self.fields['comuna'].queryset = Comuna.objects.none()
         elif self.instance and self.instance.pk and self.instance.direccion and self.instance.direccion.comuna:
-            self.fields['region'].initial = self.instance.direccion.comuna.region
-            self.fields['comuna'].queryset = Comuna.objects.filter(region=self.instance.direccion.comuna.region).order_by('nombre')
+            direccion = self.instance.direccion
+            self.fields['region'].initial = direccion.comuna.region
+            self.fields['comuna'].queryset = Comuna.objects.filter(region=direccion.comuna.region).order_by('nombre')
+            self.fields['comuna'].initial = direccion.comuna
+            self.fields['direccion_calle'].initial = direccion.calle
+            self.fields['direccion_numero'].initial = direccion.numero
+            self.fields['direccion_punto_referencia'].initial = direccion.punto_referencia
 
     def save(self, commit=True):
         propiedad = super().save(commit=False)
@@ -212,15 +217,21 @@ class PropiedadForm(forms.ModelForm):
         if commit:
             propiedad.save()
 
-            # Crear una nueva dirección
-            direccion = Direccion.objects.create(
+            # Actualizar o crear la dirección
+            direccion, created = Direccion.objects.update_or_create(
                 comuna=self.cleaned_data['comuna'],
                 calle=self.cleaned_data['direccion_calle'],
                 numero=self.cleaned_data['direccion_numero'],
-                punto_referencia=self.cleaned_data['direccion_punto_referencia']
+                punto_referencia=self.cleaned_data['direccion_punto_referencia'],
+                defaults={
+                    'comuna': self.cleaned_data['comuna'],
+                    'calle': self.cleaned_data['direccion_calle'],
+                    'numero': self.cleaned_data['direccion_numero'],
+                    'punto_referencia': self.cleaned_data['direccion_punto_referencia']
+                }
             )
 
-            # Asociar la nueva dirección a la propiedad
+            # Asociar la dirección a la propiedad
             propiedad.direccion = direccion
             propiedad.save()
 
@@ -238,111 +249,16 @@ class PropiedadForm(forms.ModelForm):
                                 descripcion=descripcion
                             )
         return propiedad
-    
-    
-class ImagenUpdateForm(forms.ModelForm):
-    class Meta:
-        model = ImagenPropiedad
-        fields = ['imagen', 'descripcion']
 
-ImagenUpdateFormSet = inlineformset_factory(
-    Propiedad, ImagenPropiedad, form=ImagenUpdateForm, extra=5, can_delete=True
-)
-
-class PropiedadUpdateForm(forms.ModelForm):
-    # Campos para la dirección
-    region = forms.ModelChoiceField(queryset=Region.objects.all(), empty_label="Seleccionar región")
-    comuna = forms.ModelChoiceField(queryset=Comuna.objects.none(), empty_label="Seleccionar comuna")
-    direccion_calle = forms.CharField(max_length=255)
-    direccion_numero = forms.CharField(max_length=10)
-    direccion_punto_referencia = forms.CharField(max_length=255, required=False)
-    
-    class Meta:
-        model = Propiedad
-        fields = ['nombre', 'descripcion', 'm2_construidos', 'm2_terreno', 'num_estacionamientos',
-                  'num_habitaciones', 'num_banos', 'tipo_propiedad', 'precio_mensual', 'region', 'comuna']
-        labels = {
-            'nombre': 'Nombre',
-            'descripcion': 'Descripción',
-            'm2_construidos': 'Metros Construidos',
-            'm2_terreno': 'Metros de Terreno',
-            'num_estacionamientos': 'Número de Estacionamientos',
-            'num_habitaciones': 'Número de Habitaciones',
-            'num_banos': 'Número de Baños',
-            'tipo_propiedad': 'Tipo de Propiedad',
-            'precio_mensual': 'Precio Mensual',
-            'region': 'Región',
-            'comuna': 'Comuna',
-        }
-
-    def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)
-        propiedad_instance = kwargs.pop('instance', None)
-        super().__init__(*args, **kwargs)
-        self.user = user  # Guardamos el usuario
-
-        # Cargar las regiones disponibles en el formulario
-        self.fields['region'].queryset = Region.objects.all()
-
-        if 'region' in self.data:
-            try:
-                region_id = int(self.data.get('region'))
-                self.fields['comuna'].queryset = Comuna.objects.filter(region_id=region_id).order_by('nombre')
-            except (ValueError, TypeError):
-                pass
-
-        elif propiedad_instance and propiedad_instance.direccion and propiedad_instance.direccion.comuna:
-            self.fields['region'].initial = propiedad_instance.direccion.comuna.region
-            self.fields['comuna'].queryset = Comuna.objects.filter(region=propiedad_instance.direccion.comuna.region).order_by('nombre')
-
-        # Inicializar el formset con las imágenes existentes si hay una instancia de propiedad
-        if propiedad_instance:
-            self.imagen_formset = ImagenUpdateFormSet(instance=propiedad_instance)
-        else:
-            self.imagen_formset = ImagenUpdateFormSet()
-
-    def save(self, commit=True):
-        propiedad = super().save(commit=False)
-
-        # Asegurarse de que arrendador se asigna correctamente
-        if self.user:
-            propiedad.arrendador = self.user
-
-        if commit:
-            propiedad.save()
-
-            # Crear o obtener la dirección
-            comuna = self.cleaned_data['comuna']
-            direccion, created = Direccion.objects.get_or_create(
-                comuna=comuna,
-                calle=self.cleaned_data['direccion_calle'],
-                numero=self.cleaned_data['direccion_numero'],
-                punto_referencia=self.cleaned_data['direccion_punto_referencia']
-            )
-            propiedad.direccion = direccion
-            propiedad.save()
-
-            # Guardar imágenes si se han proporcionado
-            for form in self.imagen_formset:
-                if form.is_valid() and form.cleaned_data:
-                    imagen = form.cleaned_data['imagen']
-                    descripcion = form.cleaned_data.get('descripcion', '')
-                    ImagenPropiedad.objects.create(
-                        propiedad=propiedad,
-                        imagen=imagen,
-                        descripcion=descripcion
-                    )
-        return propiedad
 
 class PropiedadFilterForm(forms.Form):
     region = forms.ModelChoiceField(queryset=Region.objects.all(), required=False, empty_label="Seleccionar región")
-    comuna = forms.ModelChoiceField(queryset=Comuna.objects.all().order_by('nombre'), required=False, empty_label="Seleccionar comuna")
+    comuna = forms.ModelChoiceField(queryset=Comuna.objects.all(), required=False, empty_label="Seleccionar comuna")
     tipo_propiedad = forms.ModelChoiceField(queryset=TipoPropiedad.objects.all(), required=False, empty_label="Seleccionar tipo de propiedad")
-    precio_min = forms.DecimalField(required=False, decimal_places=2, max_digits=10)
-    precio_max = forms.DecimalField(required=False, decimal_places=2, max_digits=10)
-    m2_terreno_min = forms.DecimalField(required=False, decimal_places=2, max_digits=10)
-    m2_terreno_max = forms.DecimalField(required=False, decimal_places=2, max_digits=10)
-
+    precio_min = forms.DecimalField(required=False, decimal_places=2, max_digits=10, widget=forms.NumberInput(attrs={'placeholder': 'Precio mínimo'}))
+    precio_max = forms.DecimalField(required=False, decimal_places=2, max_digits=10, widget=forms.NumberInput(attrs={'placeholder': 'Precio máximo'}))
+    m2_terreno_min = forms.DecimalField(required=False, decimal_places=2, max_digits=10, widget=forms.NumberInput(attrs={'placeholder': 'M2 terreno mínimo'}))
+    m2_terreno_max = forms.DecimalField(required=False, decimal_places=2, max_digits=10, widget=forms.NumberInput(attrs={'placeholder': 'M2 terreno máximo'}))
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if 'region' in self.data:
